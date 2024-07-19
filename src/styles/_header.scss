@@ -3,12 +3,16 @@ header {
   position: sticky;
   top: 0;
   z-index: 999;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
   background: $color_dark_dark;
-  padding: 1.5rem 4rem;
+  width: 100%;
+
+  padding: 1.5rem 0rem;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
   .site-logo {
     display: flex;
@@ -23,7 +27,7 @@ header {
     }
   }
 
-  .navContainer {
+  .navbar {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
@@ -38,6 +42,21 @@ header {
 
     .active {
       background-color: $color_primary_main;
+    }
+
+    .has-badge {
+      position: relative;
+
+      sup {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background-color: $color_secondary_main;
+        border-radius: 50%;
+        width: 2.2rem;
+        height: 2.2rem;
+        font-size: 1.4rem;
+      }
     }
   }
 
