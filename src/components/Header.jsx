@@ -1,47 +1,61 @@
-import { Link, NavLink } from "react-router-dom"
-import { useSelector } from 'react-redux'
-
-import '../styles/header.scss'
+import { Link, NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = ({ searchMovies }) => {
-  
-  const { starredMovies } = useSelector((state) => state.starred)
+  const { starredMovies } = useSelector((state) => state.starred);
 
   return (
     <header>
-      <Link to="/" data-testid="home" onClick={() => searchMovies('')}>
-        <i className="bi bi-film" />
+      <Link
+        to="/"
+        data-testid="home"
+        onClick={() => searchMovies("")}
+        className="site-logo"
+      >
+        <i class="fi fi-rr-clapperboard-play "></i>
+        <span>Leo Vegas MovieLand</span>
       </Link>
 
-      <nav>
-        <NavLink to="/starred" data-testid="nav-starred" className="nav-starred">
-          {starredMovies.length > 0 ? (
-            <>
-            <i className="bi bi-star-fill bi-star-fill-white" />
-            <sup className="star-number">{starredMovies.length}</sup>
-            </>
-          ) : (
-            <i className="bi bi-star" />
-          )}
-        </NavLink>
-        <NavLink to="/watch-later" className="nav-fav">
-          watch later
-        </NavLink>
-      </nav>
+      <div className="navContainer">
+        <nav>
+          <NavLink
+            to="/starred"
+            data-testid="nav-starred"
+            className="icon-button-primary"
+          >
+            {starredMovies.length > 0 ? (
+              <>
+                <i className="bi bi-star-fill bi-star-fill-white" />
+                <sup className="star-number">{starredMovies.length}</sup>
+              </>
+            ) : (
+              <>
+                <i class="fi fi-rr-star"></i>
+              </>
+            )}
+          </NavLink>
+          <NavLink to="/watch-later" className="button-primary">
+            <i class="fi fi-rr-play"></i>
+            <span>Watch Later</span>
+          </NavLink>
+        </nav>
 
-      <div className="input-group rounded">
-        <Link to="/" onClick={(e) => searchMovies('')} className="search-link" >
-          <input type="search" data-testid="search-movies"
-            onKeyUp={(e) => searchMovies(e.target.value)} 
-            className="form-control rounded" 
-            placeholder="Search movies..." 
-            aria-label="Search movies" 
-            aria-describedby="search-addon" 
-            />
-        </Link>            
-      </div>      
+        <label className="search">
+          <span className="">
+            <i class="fi fi-rr-search"></i>
+          </span>
+          <input
+            type="search"
+            data-testid="search-movies"
+            onKeyUp={(e) => searchMovies(e.target.value)}
+            placeholder="Search movies..."
+            aria-label="Search movies"
+            aria-describedby="search-addon"
+          />
+        </label>
+      </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

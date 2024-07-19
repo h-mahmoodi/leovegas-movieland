@@ -1,0 +1,56 @@
+//Variables
+
+//-Colors
+//--Gray Colors
+$gray_50: #f9fafb;
+$gray_100: #f3f4f6;
+$gray_200: #e5e7eb;
+$gray_300: #d1d5db;
+$gray_400: #9ca3af;
+$gray_500: #6b7280;
+$gray_600: #4b5563;
+$gray_700: #374151;
+$gray_800: #1f2937;
+$gray_900: #111827;
+$gray_950: #030712;
+//--Rose Colors
+$rose_50: #fff1f2;
+$rose_100: #ffe4e6;
+$rose_200: #fecdd3;
+$rose_300: #fda4af;
+$rose_400: #fb7185;
+$rose_500: #f43f5e;
+$rose_600: #e11d48;
+$rose_700: #be123c;
+$rose_800: #9f1239;
+$rose_900: #881337;
+$rose_950: #4c0519;
+//--Indigo Colors
+$indigo_100: #eef2ff;
+$indigo_100: #e0e7ff;
+$indigo_200: #c7d2fe;
+$indigo_300: #a5b4fc;
+$indigo_400: #818cf8;
+$indigo_500: #6366f1;
+$indigo_600: #4f46e5;
+$indigo_700: #4338ca;
+$indigo_800: #3730a3;
+$indigo_900: #312e81;
+$indigo_950: #1e1b4b;
+
+//--Primary Colors
+$color_primary_light: $indigo_500;
+$color_primary_main: $indigo_700;
+$color_primary_dark: $indigo_900;
+//--Secondary Colors
+$color_secondary_light: $rose_600;
+$color_secondary_main: $rose_700;
+$color_secondary_dark: $rose_800;
+//--Dark Colors
+$color_dark_light: $gray_700;
+$color_dark_main: $gray_800;
+$color_dark_dark: $gray_950;
+//--Light Colors
+$color_light_light: $gray_50;
+$color_light_main: $gray_200;
+$color_light_dark: $gray_400;
