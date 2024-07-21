@@ -1,38 +1,35 @@
-import { useDispatch, useSelector } from "react-redux";
-import starredSlice from "../data/starredSlice";
-import watchLaterSlice from "../data/watchLaterSlice";
-import placeholder from "../assets/not-found-500X750.jpeg";
+import { useDispatch } from "react-redux";
+import starredSlice from "../../data/starredSlice";
+import watchLaterSlice from "../../data/watchLaterSlice";
+import placeholder from "../../assets/not-found-500X750.jpeg";
+import { IMovieSummery } from "../../types/Movie";
+import useAppSelector from "../../hooks/useAppSelector";
+import useAppDispatch from "../../hooks/useAppDispatch";
 
-const Movie = ({ movie, viewTrailer, closeCard }) => {
-  const state = useSelector((state) => state);
+interface MovieProps {
+  movie: IMovieSummery;
+}
+
+const Movie = ({ movie }: MovieProps) => {
+  const state = useAppSelector((state) => state);
+  const dispatch = useAppDispatch();
+
   const { starred, watchLater } = state;
   const { starMovie, unstarMovie } = starredSlice.actions;
   const { addToWatchLater, removeFromWatchLater } = watchLaterSlice.actions;
 
-  const dispatch = useDispatch();
-
-  const myClickHandler = (e) => {
-    if (!e) var e = window.event;
-    e.cancelBubble = true;
-    if (e.stopPropagation) e.stopPropagation();
-    e.target.parentElement.parentElement.classList.remove("opened");
-  };
-
-  const viewTrailerHandler = () => {
-    viewTrailer(movie);
-  };
+  const viewTrailerHandler = () => {};
 
   const addToWatchLaterHandler = () => {
-    dispatch(
-      addToWatchLater({
-        id: movie.id,
-        overview: movie.overview,
-        release_date: movie.release_date?.substring(0, 4),
-        poster_path: movie.poster_path,
-        title: movie.title,
-        vote_average: movie.vote_average,
-      })
-    );
+    const movieItem: IMovieSummery = {
+      id: movie.id,
+      overview: movie.overview,
+      release_date: movie.release_date?.substring(0, 4),
+      poster_path: movie.poster_path,
+      title: movie.title,
+      vote_average: movie.vote_average,
+    };
+    dispatch(addToWatchLater(movieItem));
   };
 
   const removeFromWatchLaterHandler = () => {
@@ -84,7 +81,7 @@ const Movie = ({ movie, viewTrailer, closeCard }) => {
                 className="movie-item__card-body__info-play-button"
                 onClick={viewTrailerHandler}
               >
-                <i class="fi fi-rr-play-circle"></i>
+                <i className="fi fi-rr-play-circle"></i>
               </button>
               <h3 className="movie-item__card-body__info-title">
                 Watch Trailer
@@ -123,7 +120,7 @@ const Movie = ({ movie, viewTrailer, closeCard }) => {
                 className="movie-item__card-footer-later-button"
                 onClick={addToWatchLaterHandler}
               >
-                <i class="fi fi-sr-video-duration"></i>
+                <i className="fi fi-sr-video-duration"></i>
               </button>
             ) : (
               <button
@@ -132,7 +129,7 @@ const Movie = ({ movie, viewTrailer, closeCard }) => {
                 className="movie-item__card-footer-later-button movie-item__card-footer-later-button--active"
                 onClick={removeFromWatchLaterHandler}
               >
-                <i class="fi fi-sr-video-duration"></i>
+                <i className="fi fi-sr-video-duration"></i>
               </button>
             )}
             {!starred.starredMovies
@@ -143,7 +140,7 @@ const Movie = ({ movie, viewTrailer, closeCard }) => {
                 data-testid="starred-link"
                 onClick={addToStarMovieHandler}
               >
-                <i class="fi fi-sr-wishlist-star"></i>
+                <i className="fi fi-sr-wishlist-star"></i>
               </span>
             ) : (
               <span

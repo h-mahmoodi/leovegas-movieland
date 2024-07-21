@@ -15,8 +15,8 @@ import {
   ENDPOINT,
   API_KEY,
 } from "./constants";
-import Header from "./components/Header";
-import Movies from "./components/Movies";
+import Header from "./components/header/Header";
+import Movies from "./components/movie/Movies";
 import Starred from "./components/Starred";
 import WatchLater from "./components/WatchLater";
 import YouTubePlayer from "./components/YoutubePlayer";
