@@ -1,5 +1,11 @@
-@import "./base";
-@import "./header";
-@import "./app";
-@import "./movies";
-@import "./starred";
+//components
+@import "./components/base";
+@import "./components/header";
+@import "./components/app";
+@import "./components/movies";
+@import "./components/movie";
+@import "./components/starred";
+
+//pages
+@import "./pages/starredMoviePage";
+@import "./pages/watchLaterPage";

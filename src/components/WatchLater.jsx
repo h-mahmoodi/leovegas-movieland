@@ -9,35 +9,42 @@ const WatchLater = ({ viewTrailer }) => {
   const { remveAllWatchLater } = watchLaterSlice.actions;
   const dispatch = useDispatch();
 
+  const removeAllHandler = () => {
+    dispatch(remveAllWatchLater());
+  };
+
   return (
-    <div className="starred" data-testid="watch-later-div">
-      {watchLater.watchLaterMovies.length > 0 && (
-        <div data-testid="watch-later-movies" className="starred-movies">
-          <h6 className="header">Watch Later List</h6>
-          <div className="row">
+    <div className="watch-later__page" data-testid="watch-later-div">
+      <div className="watch-later__container" data-testid="watch-later-movies">
+        <div className="watch-later__header">
+          <h6 className="watch-later__header-title">
+            Watch Later List: ({watchLater.watchLaterMovies.length} movies)
+          </h6>
+          <button
+            className="watch-later__header-button button-primary"
+            onClick={removeAllHandler}
+          >
+            Remove all
+          </button>
+        </div>
+        {watchLater.watchLaterMovies.length > 0 && (
+          <div className="watch-later__movies">
             {watchLater.watchLaterMovies.map((movie) => (
               <Movie movie={movie} key={movie.id} viewTrailer={viewTrailer} />
             ))}
           </div>
-
-          <footer className="text-center">
-            <button
-              className="btn btn-primary"
-              onClick={() => dispatch(remveAllWatchLater())}
-            >
-              Empty list
-            </button>
-          </footer>
-        </div>
-      )}
+        )}
+      </div>
 
       {watchLater.watchLaterMovies.length === 0 && (
-        <div className="text-center empty-cart">
-          <i className="bi bi-heart" />
-          <p>You have no movies saved to watch later.</p>
-          <p>
-            Go to <Link to="/">Home</Link>
+        <div className="watch-later__empty">
+          <i class="watch-later__empty-icon fi fi-rr-diamond-exclamation"></i>
+          <p className="watch-later__empty-message">
+            You have no movies saved to watch later.
           </p>
+          <Link to="/" className="watch-later__empty-link">
+            Go to Home
+          </Link>
         </div>
       )}
     </div>

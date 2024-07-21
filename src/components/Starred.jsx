@@ -9,35 +9,42 @@ const Starred = ({ viewTrailer }) => {
   const { clearAllStarred } = starredSlice.actions;
   const dispatch = useDispatch();
 
+  const removeAllHandler = () => {
+    dispatch(clearAllStarred());
+  };
+
   return (
-    <div className="starred" data-testid="starred">
-      {starred.starredMovies.length > 0 && (
-        <div data-testid="starred-movies" className="starred-movies">
-          <h6 className="header">Starred movies</h6>
-          <div className="row">
+    <div className="starred-movies__page" data-testid="starred">
+      <div className="starred-movies__container" data-testid="starred-movies ">
+        <div className="starred-movies__header">
+          <h6 className="starred-movies__header-title">
+            Starred movies List: ({starred.starredMovies.length} movies)
+          </h6>
+          <button
+            className="starred-movies__header-button button-primary"
+            onClick={removeAllHandler}
+          >
+            Remove all
+          </button>
+        </div>
+        {starred.starredMovies.length > 0 && (
+          <div className="starred-movies__movies">
             {starred.starredMovies.map((movie) => (
               <Movie movie={movie} key={movie.id} viewTrailer={viewTrailer} />
             ))}
           </div>
-
-          <footer className="text-center">
-            <button
-              className="btn btn-primary"
-              onClick={() => dispatch(clearAllStarred())}
-            >
-              Remove all starred
-            </button>
-          </footer>
-        </div>
-      )}
+        )}
+      </div>
 
       {starred.starredMovies.length === 0 && (
-        <div className="text-center empty-cart">
-          <i className="bi bi-star" />
-          <p>There are no starred movies.</p>
-          <p>
-            Go to <Link to="/">Home</Link>
+        <div className="starred-movies__empty">
+          <i class="starred-movies__empty-icon fi fi-rr-diamond-exclamation"></i>
+          <p className="starred-movies__empty-message">
+            You have no movies as starred.
           </p>
+          <Link to="/" className="starred-movies__empty-link">
+            Go to Home
+          </Link>
         </div>
       )}
     </div>

@@ -57,6 +57,9 @@
   padding: 1rem 1.4rem;
   color: $color_light_main;
   transition: all 0.2s;
+  border: 0px;
+  font-size: inherit;
+  cursor: pointer;
 
   i {
     font-size: 2rem;
