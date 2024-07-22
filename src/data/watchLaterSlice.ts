@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IMovieSummery } from "../types/Movie";
 
 interface InitialState {
-  watchLaterMovies: IMovieSummery[];
+  movies: IMovieSummery[];
 }
 
 const initialState: InitialState = {
-  watchLaterMovies: [],
+  movies: [],
 };
 
 const watchLaterSlice = createSlice({
@@ -14,7 +14,7 @@ const watchLaterSlice = createSlice({
   initialState: initialState,
   reducers: {
     addToWatchLater: (state, action: PayloadAction<IMovieSummery>) => {
-      state.watchLaterMovies = [action.payload, ...state.watchLaterMovies];
+      state.movies = [action.payload, ...state.movies];
     },
     removeFromWatchLater: (state, action: PayloadAction<IMovieSummery>) => {
       //   const indexOfId = state.watchLaterMovies.findIndex(
@@ -22,12 +22,12 @@ const watchLaterSlice = createSlice({
       //   );
       //   state.watchLaterMovies.splice(indexOfId, 1);
 
-      state.watchLaterMovies = state.watchLaterMovies.filter(
+      state.movies = state.movies.filter(
         (movie) => movie.id !== action.payload.id
       );
     },
     remveAllWatchLater: (state) => {
-      state.watchLaterMovies = [];
+      state.movies = [];
     },
   },
 });

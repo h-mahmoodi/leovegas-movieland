@@ -1,0 +1,23 @@
+.search-page {
+  &_header {
+    display: flex;
+    justify-content: space-between;
+    background-color: $color_dark_dark;
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 3rem;
+
+    &-title {
+      font-size: 1.8rem;
+    }
+    &-report {
+      font-size: 1.6rem;
+      display: flex;
+      gap: 1rem;
+
+      &-info {
+        color: $color_secondary_main;
+      }
+    }
+  }
+}

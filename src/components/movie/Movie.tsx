@@ -11,10 +11,12 @@ interface MovieProps {
 }
 
 const Movie = ({ movie }: MovieProps) => {
-  const state = useAppSelector((state) => state);
+  // const state = useAppSelector((state) => state);
+  const starred = useAppSelector((state) => state.starred);
+  const watchLater = useAppSelector((state) => state.watchLater);
   const dispatch = useAppDispatch();
 
-  const { starred, watchLater } = state;
+  // const { starred, watchLater } = state;
   const { starMovie, unstarMovie } = starredSlice.actions;
   const { addToWatchLater, removeFromWatchLater } = watchLaterSlice.actions;
 
@@ -108,12 +110,12 @@ const Movie = ({ movie }: MovieProps) => {
         </div>
         <div className="movie-item__card-footer">
           <div>
-            <span>IMDB: {movie.vote_average.toFixed(1)}</span>
+            <span>
+              IMDB: {movie.vote_average ? movie.vote_average.toFixed(1) : 0}
+            </span>
           </div>
           <div className="movie-item__card-footer_buttons">
-            {!watchLater.watchLaterMovies
-              .map((movie) => movie.id)
-              .includes(movie.id) ? (
+            {!watchLater.movies.map((movie) => movie.id).includes(movie.id) ? (
               <button
                 type="button"
                 data-testid="watch-later"
@@ -132,9 +134,7 @@ const Movie = ({ movie }: MovieProps) => {
                 <i className="fi fi-sr-video-duration"></i>
               </button>
             )}
-            {!starred.starredMovies
-              .map((movie) => movie.id)
-              .includes(movie.id) ? (
+            {!starred.movies.map((movie) => movie.id).includes(movie.id) ? (
               <span
                 className="movie-item__card-footer-star-button"
                 data-testid="starred-link"

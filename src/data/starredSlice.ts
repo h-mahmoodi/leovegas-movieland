@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IMovieSummery } from "../types/Movie";
 
 interface InitialState {
-  starredMovies: IMovieSummery[];
+  movies: IMovieSummery[];
 }
 
 const initialState: InitialState = {
-  starredMovies: [],
+  movies: [],
 };
 
 const starredSlice = createSlice({
@@ -14,15 +14,15 @@ const starredSlice = createSlice({
   initialState,
   reducers: {
     starMovie: (state, action: PayloadAction<IMovieSummery>) => {
-      state.starredMovies = [action.payload, ...state.starredMovies];
+      state.movies = [action.payload, ...state.movies];
     },
     unstarMovie: (state, action: PayloadAction<IMovieSummery>) => {
-      state.starredMovies = state.starredMovies.filter(
+      state.movies = state.movies.filter(
         (movie) => movie.id !== action.payload.id
       );
     },
     clearAllStarred: (state) => {
-      state.starredMovies = [];
+      state.movies = [];
     },
   },
 });

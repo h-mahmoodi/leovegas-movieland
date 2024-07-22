@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import useAppSelector from "../../hooks/useAppSelector";
 
 const HeaderNav = () => {
-  const { starredMovies } = useAppSelector((state) => state.starred);
+  const { movies: starMovies } = useAppSelector((state) => state.starred);
   return (
     <nav>
       <NavLink
@@ -10,10 +10,10 @@ const HeaderNav = () => {
         data-testid="nav-starred"
         className="icon-button-primary has-badge"
       >
-        {starredMovies.length > 0 ? (
+        {starMovies.length > 0 ? (
           <>
             <i className="bi bi-star-fill bi-star-fill-white" />
-            <sup className="star-number">{starredMovies.length}</sup>
+            <sup className="star-number">{starMovies.length}</sup>
           </>
         ) : (
           <>
