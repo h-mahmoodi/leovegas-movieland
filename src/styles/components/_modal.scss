@@ -1,0 +1,73 @@
+.modal {
+  &-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: hidden;
+    // background-color: #141414df;
+  }
+  &-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: #0e0e0eed;
+  }
+  &-wrapper {
+    z-index: 10;
+    background-color: black;
+    padding: 2rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    // width: 64rem;
+  }
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid $color_secondary_main;
+    padding-bottom: 1rem;
+
+    &-title {
+      font-size: 2.4rem;
+    }
+
+    &-close {
+      background-color: $color_dark_main;
+      padding: 1rem;
+      border-radius: 10px;
+      border: 0px;
+      color: $color_light_main;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $color_secondary_main;
+      }
+    }
+  }
+  &-overview {
+    width: 63rem;
+    text-align: left;
+    padding-top: 1rem;
+    line-height: 1.5;
+  }
+
+  &-error {
+    padding: 3rem;
+    font-size: 2.5rem;
+    color: $color_secondary_main;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+}

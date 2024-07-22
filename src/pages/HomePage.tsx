@@ -11,6 +11,7 @@ const HomePage = () => {
   const { movies, fetchStatus, currentPage, hasMoreToFetch } = useAppSelector(
     (state) => state.movies
   );
+
   const dispatch = useAppDispatch();
   const initialFetchRef = useRef(false);
 

@@ -63,6 +63,7 @@ const HeaderSearch = () => {
         </span>
         <input
           type="search"
+          name="searcg"
           data-testid="search-movies"
           placeholder="Search movies..."
           aria-label="Search movies"

@@ -17,9 +17,11 @@ import {
 } from "./constants";
 import Header from "./components/header/Header";
 import Movies from "./components/movie/MoviesList";
-import YouTubePlayer from "./components/YoutubePlayer";
+import YouTubePlayer from "./components/ui/YoutubePlayer";
 import "./styles/main.scss";
 import AppRouter from "./router/AppRouter";
+import Modal from "./components/ui/Modal";
+import useAppSelector from "./hooks/useAppSelector";
 
 const App = () => {
   // const state = useSelector((state) => state);
@@ -27,7 +29,7 @@ const App = () => {
   // const dispatch = useDispatch();
   // const [searchParams, setSearchParams] = useSearchParams();
   // const searchQuery = searchParams.get("search");
-  // const [videoKey, setVideoKey] = useState();
+  const [videoKey, setVideoKey] = useState<string | null>();
   // const [isOpen, setOpen] = useState(false);
   // const navigate = useNavigate();
 
@@ -64,26 +66,36 @@ const App = () => {
   //   setOpen(true);
   // };
 
-  // const getMovie = async (id) => {
+  // const getMovie = async (id: string) => {
   //   const URL = `${ENDPOINT}/movie/${id}?api_key=${API_KEY}&append_to_response=videos`;
+  //   console.log(URL);
 
   //   setVideoKey(null);
   //   const videoData = await fetch(URL).then((response) => response.json());
+  //   console.log("videoData", videoData);
 
   //   if (videoData.videos && videoData.videos.results.length) {
   //     const trailer = videoData.videos.results.find(
-  //       (vid) => vid.type === "Trailer"
+  //       (vid: Record<string, unknown>) => vid.type === "Trailer"
   //     );
   //     setVideoKey(trailer ? trailer.key : videoData.videos.results[0].key);
   //   }
   // };
 
+  // getMovie("27205");
+
   // useEffect(() => {
-  //   getMovies();
+  //   getMovie("27205");
   // }, []);
 
+  const { isModal } = useAppSelector((state) => state.app);
+
   return (
-    <AppRouter />
+    <>
+      <AppRouter />
+      {isModal && <Modal />}
+    </>
+
     // <div className="App">
     //   <Header
     //     searchMovies={searchMovies}

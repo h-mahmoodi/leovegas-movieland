@@ -5,6 +5,7 @@ import placeholder from "../../assets/not-found-500X750.jpeg";
 import { IMovieSummery } from "../../types/Movie";
 import useAppSelector from "../../hooks/useAppSelector";
 import useAppDispatch from "../../hooks/useAppDispatch";
+import appSlice, { fetchTrailer } from "../../data/appSlice";
 
 interface MovieProps {
   movie: IMovieSummery;
@@ -19,8 +20,7 @@ const Movie = ({ movie }: MovieProps) => {
   // const { starred, watchLater } = state;
   const { starMovie, unstarMovie } = starredSlice.actions;
   const { addToWatchLater, removeFromWatchLater } = watchLaterSlice.actions;
-
-  const viewTrailerHandler = () => {};
+  const { openModal, movieDetails } = appSlice.actions;
 
   const addToWatchLaterHandler = () => {
     const movieItem: IMovieSummery = {
@@ -55,6 +55,13 @@ const Movie = ({ movie }: MovieProps) => {
     dispatch(unstarMovie(movie));
   };
 
+  const viewTrailerHandler = async (movie: IMovieSummery) => {
+    dispatch(openModal());
+    dispatch(movieDetails({ title: movie.title, overview: movie.overview }));
+    dispatch(fetchTrailer(movie.id.toString()));
+    // console.log(await fetchTrailer(id));
+  };
+
   return (
     <div className="movie-item">
       <div
@@ -81,7 +88,7 @@ const Movie = ({ movie }: MovieProps) => {
               <button
                 type="button"
                 className="movie-item__card-body__info-play-button"
-                onClick={viewTrailerHandler}
+                onClick={() => viewTrailerHandler(movie)}
               >
                 <i className="fi fi-rr-play-circle"></i>
               </button>
