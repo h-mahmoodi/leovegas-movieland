@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from 'react';
+import { type ChangeEvent, type FormEvent, useEffect, useState } from 'react';
 import { createSearchParams, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
 import useDebounce from '../../hooks/useDebounce';
@@ -26,21 +26,32 @@ const HeaderSearch = () => {
     navigateHandler(searchText);
   };
 
-  useEffect(() => {
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setIsLoading(true);
-  }, [searchText]);
-
-  useEffect(() => {
-    navigateHandler(debounceValue);
-    setIsLoading(false);
-  }, [debounceValue]);
-
-  useEffect(() => {
-    if (!debounceValue) {
+    setSearchText(e.target.value);
+    if (!e.target.value) {
+      setIsLoading(false);
       navigate('/');
+    }
+  };
+
+  // useEffect(() => {
+  //   setIsLoading(true);
+  // }, [searchText]);
+
+  useEffect(() => {
+    if (debounceValue) {
+      navigateHandler(debounceValue);
       setIsLoading(false);
     }
   }, [debounceValue]);
+
+  // useEffect(() => {
+  //   if (!debounceValue) {
+  //     navigate('/');
+  //     setIsLoading(false);
+  //   }
+  // }, [debounceValue]);
 
   return (
     <form onSubmit={submitHandler}>
@@ -57,7 +68,7 @@ const HeaderSearch = () => {
           aria-label="Search movies"
           aria-describedby="search-addon"
           value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
+          onChange={onChangeHandler}
         />
       </label>
     </form>

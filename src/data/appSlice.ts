@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { API_KEY, ENDPOINT } from '../constants';
+import { ENDPOINT_MOVIE } from '../constants';
 
 interface InitialState {
   isModal: boolean;
@@ -17,7 +17,7 @@ const initialState: InitialState = {
 };
 
 export const fetchTrailer = createAsyncThunk('fetch-trailer', async (id: string) => {
-  const URL = `${ENDPOINT}/movie/${id}?api_key=${API_KEY}&append_to_response=videos`;
+  const URL = ENDPOINT_MOVIE.replace('<MOVIE_ID>', id);
   const videoData = await fetch(URL).then((response) => response.json());
   if (videoData.videos.results.length) {
     const trailer = videoData.videos.results.find(
