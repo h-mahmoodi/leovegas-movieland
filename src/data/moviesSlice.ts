@@ -1,9 +1,10 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { IMovie } from "../types/Movie";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+
+import { type IMovie, type IMovieSummery } from '../types/Movie';
 
 interface InitialState {
-  movies: IMovie[];
-  fetchStatus?: "success" | "loading" | "error";
+  movies: IMovieSummery[];
+  fetchStatus?: 'success' | 'loading' | 'error';
   currentPage: number;
   hasMoreToFetch: boolean;
   totalResults: number;
@@ -11,33 +12,40 @@ interface InitialState {
 
 const initialState: InitialState = {
   movies: [],
-  fetchStatus: "loading",
+  fetchStatus: 'loading',
   currentPage: 1,
   hasMoreToFetch: true,
-  totalResults: 0,
+  totalResults: 0
 };
-// https://api.themoviedb.org/3/discover/movie
-// ?api_key=8cac6dec66e09ab439c081b251304443&sort_by=vote_count.desc&page=2
 
 export const fetchMovies = createAsyncThunk(
-  "fetch-movies",
+  'fetch-movies',
   async ({ apiUrl, page }: { apiUrl: string; page: number }) => {
     const response = await fetch(`${apiUrl}&page=${page}`);
     const responseData = await response.json();
     // await new Promise((resolve, reject) => {
-    //   setTimeout(resolve, 1000);
+    //   setTimeout(resolve, 800);
     // });
+
+    const normalizedMovies: IMovieSummery[] = responseData.results.map((movie: IMovie) => ({
+      id: movie.id,
+      overview: movie.overview,
+      release_date: movie.release_date?.substring(0, 4),
+      poster_path: movie.poster_path,
+      title: movie.title,
+      vote_average: movie.vote_average
+    }));
     return {
-      movies: responseData.results,
+      movies: normalizedMovies,
       page: page,
       totalPages: responseData.total_pages,
-      totalResults: responseData.total_results,
+      totalResults: responseData.total_results
     };
   }
 );
 
 const moviesSlice = createSlice({
-  name: "movies",
+  name: 'movies',
   initialState,
   reducers: {
     resetMovies(state) {
@@ -45,24 +53,24 @@ const moviesSlice = createSlice({
       state.currentPage = 1;
       state.hasMoreToFetch = true;
       state.totalResults = 0;
-    },
+    }
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchMovies.fulfilled, (state, action) => {
         state.movies = [...state.movies, ...action.payload.movies];
-        state.fetchStatus = "success";
+        state.fetchStatus = 'success';
         state.currentPage = action.payload.page;
         state.hasMoreToFetch = action.payload.page < action.payload.totalPages;
         state.totalResults = action.payload.totalResults;
       })
       .addCase(fetchMovies.pending, (state) => {
-        state.fetchStatus = "loading";
+        state.fetchStatus = 'loading';
       })
       .addCase(fetchMovies.rejected, (state) => {
-        state.fetchStatus = "error";
+        state.fetchStatus = 'error';
       });
-  },
+  }
 });
 
 export default moviesSlice;

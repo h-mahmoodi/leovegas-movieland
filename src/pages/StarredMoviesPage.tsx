@@ -1,8 +1,11 @@
-import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import starredSlice from "../data/starredSlice";
-import useAppSelector from "../hooks/useAppSelector";
-import MoviesList from "../components/movie/MoviesList";
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+import useAppSelector from '../hooks/useAppSelector';
+
+import starredSlice from '../data/starredSlice';
+
+import MoviesList from '../components/movie/MoviesList';
 
 const StarredMoviesPage = () => {
   const { movies } = useAppSelector((state) => state.starred);
@@ -22,8 +25,7 @@ const StarredMoviesPage = () => {
           </h6>
           <button
             className="starred-movies__header-button button-primary"
-            onClick={removeAllHandler}
-          >
+            onClick={removeAllHandler}>
             Remove all
           </button>
         </div>
@@ -37,9 +39,7 @@ const StarredMoviesPage = () => {
       {movies.length === 0 && (
         <div className="starred-movies__empty">
           <i className="starred-movies__empty-icon fi fi-rr-diamond-exclamation"></i>
-          <p className="starred-movies__empty-message">
-            You have no movies as starred.
-          </p>
+          <p className="starred-movies__empty-message">You have no movies as starred.</p>
           <Link to="/" className="starred-movies__empty-link">
             Go to Home
           </Link>

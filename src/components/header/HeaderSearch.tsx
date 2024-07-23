@@ -1,35 +1,23 @@
-import {
-  ChangeEvent,
-  FormEvent,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import {
-  createSearchParams,
-  useLocation,
-  useNavigate,
-  useSearchParams,
-} from "react-router-dom";
-import useDebounce from "../../hooks/useDebounce";
-import useAppSelector from "../../hooks/useAppSelector";
+import { FormEvent, useEffect, useState } from 'react';
+import { createSearchParams, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+
+import useDebounce from '../../hooks/useDebounce';
 
 const HeaderSearch = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
-  const searchQuery = searchParams.get("title");
-  const [searchText, setSearchText] = useState<string>(searchQuery || "");
+  const searchQuery = searchParams.get('title');
+  const [searchText, setSearchText] = useState<string>(searchQuery || '');
   const debounceValue = useDebounce(searchText, 400);
   const [isLoading, setIsLoading] = useState(false);
 
   const navigateHandler = (searchedTitle: string) => {
     navigate({
-      pathname: "/search",
+      pathname: '/search',
       search: createSearchParams({
-        title: searchedTitle,
-      }).toString(),
+        title: searchedTitle
+      }).toString()
     });
   };
 
@@ -49,7 +37,7 @@ const HeaderSearch = () => {
 
   useEffect(() => {
     if (!debounceValue) {
-      navigate("/");
+      navigate('/');
       setIsLoading(false);
     }
   }, [debounceValue]);

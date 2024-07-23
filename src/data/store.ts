@@ -1,16 +1,17 @@
-import { configureStore } from "@reduxjs/toolkit";
-import moviesSlice from "./moviesSlice";
-import starredSlice from "./starredSlice";
-import watchLaterSlice from "./watchLaterSlice";
-import appSlice from "./appSlice";
+import { configureStore } from '@reduxjs/toolkit';
+
+import moviesSlice from './moviesSlice';
+import starredSlice from './starredSlice';
+import watchLaterSlice from './watchLaterSlice';
+import appSlice from './appSlice';
 
 const store = configureStore({
   reducer: {
     app: appSlice.reducer,
     movies: moviesSlice.reducer,
     starred: starredSlice.reducer,
-    watchLater: watchLaterSlice.reducer,
-  },
+    watchLater: watchLaterSlice.reducer
+  }
 });
 
 export type RootState = ReturnType<typeof store.getState>;
