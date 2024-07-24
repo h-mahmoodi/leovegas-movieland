@@ -6,6 +6,7 @@ import useAppSelector from '../hooks/useAppSelector';
 import watchLaterSlice from '../data/watchLaterSlice';
 
 import MoviesList from '../components/movie/MoviesList';
+import Button from '../components/ui/Button';
 
 const WatchLaterPage = () => {
   const { movies } = useAppSelector((state) => state.watchLater);
@@ -21,9 +22,12 @@ const WatchLaterPage = () => {
       <div className="watch-later__container" data-testid="watch-later-movies">
         <div className="watch-later__header">
           <h6 className="watch-later__header-title">Watch Later List: ({movies.length} movies)</h6>
-          <button className="watch-later__header-button button-primary" onClick={removeAllHandler}>
-            Remove all
-          </button>
+          {movies.length !== 0 && (
+            <Button buttonStyle="secondary" onClick={removeAllHandler}>
+              <i className="fi fi-rr-trash"></i>
+              <span>Remove all</span>
+            </Button>
+          )}
         </div>
         {movies.length > 0 && (
           <div className="watch-later__movies">

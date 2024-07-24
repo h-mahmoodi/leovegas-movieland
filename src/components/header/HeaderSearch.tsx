@@ -35,23 +35,12 @@ const HeaderSearch = () => {
     }
   };
 
-  // useEffect(() => {
-  //   setIsLoading(true);
-  // }, [searchText]);
-
   useEffect(() => {
     if (debounceValue) {
       navigateHandler(debounceValue);
       setIsLoading(false);
     }
   }, [debounceValue]);
-
-  // useEffect(() => {
-  //   if (!debounceValue) {
-  //     navigate('/');
-  //     setIsLoading(false);
-  //   }
-  // }, [debounceValue]);
 
   return (
     <form onSubmit={submitHandler}>

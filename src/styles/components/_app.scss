@@ -48,31 +48,6 @@
   }
 }
 
-.button-primary {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  background-color: $color_dark_light;
-  border-radius: 5px;
-  padding: 1rem 1.4rem;
-  color: $color_light_main;
-  transition: all 0.2s;
-  border: 0px;
-  font-size: inherit;
-  cursor: pointer;
-
-  i {
-    font-size: 2rem;
-  }
-
-  &:hover {
-    background-color: $color_dark_main;
-  }
-  &:active {
-    background-color: $color_primary_dark;
-  }
-}
-
 .icon-button-primary {
   background-color: $color_dark_light;
   border-radius: 5px;

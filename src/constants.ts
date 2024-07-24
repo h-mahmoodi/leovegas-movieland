@@ -14,4 +14,4 @@ export const ENDPOINT_MOVIE = process.env
   .replace('<API_KEY>', API_KEY);
 
 export const WATCH_LATER_STORAGE_KEY = process.env.REACT_APP_WATCH_LATER_STORAGE_KEY!;
-export const STARRED_STORAGE_KEY = process.env.REACT_APP_WATCH_LATER_STORAGE_KEY!;
+export const STARRED_STORAGE_KEY = process.env.REACT_APP_STARRED_STORAGE_KEY!;

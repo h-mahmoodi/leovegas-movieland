@@ -1,30 +1,23 @@
-import { NavLink } from "react-router-dom";
-import useAppSelector from "../../hooks/useAppSelector";
+import useAppSelector from '../../hooks/useAppSelector';
+import Link from '../ui/Link';
 
 const HeaderNav = () => {
   const { movies: starMovies } = useAppSelector((state) => state.starred);
+  const { movies: watchLaterMovies } = useAppSelector((state) => state.watchLater);
   return (
     <nav>
-      <NavLink
-        to="/starred"
-        data-testid="nav-starred"
-        className="icon-button-primary has-badge"
-      >
-        {starMovies.length > 0 ? (
-          <>
-            <i className="bi bi-star-fill bi-star-fill-white" />
-            <sup className="star-number">{starMovies.length}</sup>
-          </>
-        ) : (
-          <>
-            <i className="fi fi-rr-star"></i>
-          </>
-        )}
-      </NavLink>
-      <NavLink to="/watch-later" className="button-primary">
+      <Link to="/starred" data-testid="nav-starred" className="has-badge">
+        <i className="fi fi-sr-wishlist-star" />
+        <span>Starred</span>
+        {starMovies.length > 0 && <sup className="star-number">{starMovies.length}</sup>}
+      </Link>
+      <Link to="/watch-later" className="has-badge">
         <i className="fi fi-rr-video-duration"></i>
         <span>Watch Later</span>
-      </NavLink>
+        {watchLaterMovies.length > 0 && (
+          <sup className="star-number">{watchLaterMovies.length}</sup>
+        )}
+      </Link>
     </nav>
   );
 };

@@ -1,38 +1,35 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from 'react';
 
 interface useInfiniteScrollProps {
   fetcher: () => void;
   hasMoreToFetch: boolean;
 }
 
-const useInfiniteScroll = ({
-  fetcher,
-  hasMoreToFetch,
-}: useInfiniteScrollProps) => {
-  const [isFetching, setIsFetching] = useState<boolean>(false);
-  const handleScroll = () => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop <
-        document.documentElement.offsetHeight ||
-      isFetching ||
-      !hasMoreToFetch
-    )
-      return;
-    setIsFetching(true);
-  };
+const useInfiniteScroll = ({ fetcher, hasMoreToFetch }: useInfiniteScrollProps) => {
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const loaderRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [isFetching, hasMoreToFetch]);
+    if (!hasMoreToFetch) return;
 
-  useEffect(() => {
-    if (!isFetching) return;
-    fetcher();
-    setIsFetching(false);
-  }, [isFetching]);
+    if (observerRef.current) observerRef.current.disconnect();
 
-  return [isFetching];
+    observerRef.current = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        fetcher();
+      }
+    });
+
+    if (loaderRef.current) {
+      observerRef.current.observe(loaderRef.current);
+    }
+
+    return () => {
+      if (observerRef.current) observerRef.current.disconnect();
+    };
+  }, [fetcher, hasMoreToFetch]);
+
+  return loaderRef;
 };
 
 export default useInfiniteScroll;

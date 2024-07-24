@@ -1,4 +1,4 @@
-@import "./../variables/index";
+@import './../variables/index';
 header {
   position: sticky;
   top: 0;
@@ -31,18 +31,14 @@ header {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
-    gap: 3rem;
+    gap: 2rem;
   }
 
   nav {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
-    gap: 1rem;
-
-    .active {
-      background-color: $color_primary_main;
-    }
+    gap: 2rem;
 
     .has-badge {
       position: relative;
@@ -56,6 +52,7 @@ header {
         width: 2.2rem;
         height: 2.2rem;
         font-size: 1.4rem;
+        line-height: 1.5;
       }
     }
   }
@@ -85,19 +82,3 @@ header {
     }
   }
 }
-
-// input {
-//   border-radius: 5px;
-//   padding: 1.1rem 1.4rem;
-//   border: none;
-//   outline: none;
-//   background-color: $color_dark_light;
-//   color: $color_light_main;
-//   width: 20rem;
-//   font-size: inherit;
-//   box-sizing: border-box;
-
-//   &::placeholder {
-//     color: $color_light_dark;
-//   }
-// }

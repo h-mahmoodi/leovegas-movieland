@@ -37,7 +37,7 @@ const HomePage = () => {
     }
   }, [fetchStatus, currentPage, getMovies]);
 
-  useInfiniteScroll({ fetcher: loadMoreMovies, hasMoreToFetch });
+  const loaderRef = useInfiniteScroll({ fetcher: loadMoreMovies, hasMoreToFetch });
 
   if (!fetchStatus || fetchStatus === 'error') {
     return <h1 className="text-center">Something is wrong.😓 </h1>;
@@ -47,6 +47,7 @@ const HomePage = () => {
     <>
       <MoviesList movies={movies} />
       {fetchStatus === 'loading' && <Loader />}
+      <div ref={loaderRef} />
     </>
   );
 };

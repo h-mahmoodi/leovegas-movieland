@@ -1,17 +1,19 @@
 //components
-@import "./components/base";
-@import "./components/header";
-@import "./components/footer";
-@import "./components/app";
-@import "./components/movies";
-@import "./components/movie";
-@import "./components/starred";
-@import "./components/loader";
-@import "./components/layout";
-@import "./components/modal";
+@import './components/base';
+@import './components/header';
+@import './components/footer';
+@import './components/app';
+@import './components/movies';
+@import './components/movie';
+@import './components/starred';
+@import './components/loader';
+@import './components/layout';
+@import './components/modal';
+@import './components/button';
+@import './components/link';
 
 //pages
-@import "./pages/homePage";
-@import "./pages/starredMoviePage";
-@import "./pages/watchLaterPage";
-@import "./pages/searchPage";
+@import './pages/homePage';
+@import './pages/starredMoviePage';
+@import './pages/watchLaterPage';
+@import './pages/searchPage';

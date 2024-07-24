@@ -1,6 +1,6 @@
-import HeaderLogo from "./HeaderLogo";
-import HeaderNav from "./HeaderNav";
-import HeaderSearch from "./HeaderSearch";
+import HeaderLogo from './HeaderLogo';
+import HeaderNav from './HeaderNav';
+import HeaderSearch from './HeaderSearch';
 
 const Header = () => {
   return (
@@ -10,7 +10,6 @@ const Header = () => {
 
         <div className="navbar">
           <HeaderNav />
-
           <HeaderSearch />
         </div>
       </div>
