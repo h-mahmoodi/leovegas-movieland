@@ -1,4 +1,4 @@
-@import "./../variables/index";
+@import './../variables/index';
 
 *,
 *:before,
@@ -14,12 +14,13 @@ html {
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
   color: $color_light_main;
   font-size: 1.6rem;
+  background-color: $color_dark_main;
 }
 
 a,
@@ -28,26 +29,24 @@ a:active {
   text-decoration: none;
 }
 
-// input {
-//   border-radius: 5px;
-//   padding: 1.1rem 1.4rem;
-//   border: none;
-//   outline: none;
-//   background-color: $color_dark_light;
-//   color: $color_light_main;
-//   width: 20rem;
-//   font-size: inherit;
-//   box-sizing: border-box;
-
-//   &::placeholder {
-//     color: $color_light_dark;
-//   }
-// }
-
 .container {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 1rem;
+
+  @include screen(large-desktop) {
+    max-width: 1500px;
+  }
+  @include screen(tablet-landscape) {
+    max-width: 900px;
+  }
+  @include screen(tablet) {
+    max-width: 600px;
+  }
+  @include screen(mobile) {
+    max-width: 300px;
+  }
 }
 
 i {

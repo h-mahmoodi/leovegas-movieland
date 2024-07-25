@@ -112,7 +112,7 @@ const Movie = ({ movie }: MovieProps) => {
                 data-testid="watch-later"
                 className="movie-item__card-footer-later-button"
                 onClick={addToWatchLaterHandler}>
-                <i className="fi fi-sr-video-duration"></i>
+                <i className="fi fi-rr-video-duration"></i>
               </button>
             ) : (
               <button
@@ -120,7 +120,7 @@ const Movie = ({ movie }: MovieProps) => {
                 data-testid="remove-watch-later"
                 className="movie-item__card-footer-later-button movie-item__card-footer-later-button--active"
                 onClick={removeFromWatchLaterHandler}>
-                <i className="fi fi-sr-video-duration"></i>
+                <i className="fi fi-rr-video-duration"></i>
               </button>
             )}
             {!starred.movies.map((movie) => movie.id).includes(movie.id) ? (
@@ -128,14 +128,14 @@ const Movie = ({ movie }: MovieProps) => {
                 className="movie-item__card-footer-star-button"
                 data-testid="starred-link"
                 onClick={addToStarMovieHandler}>
-                <i className="fi fi-sr-wishlist-star"></i>
+                <i className="fi fi-rr-wishlist-star"></i>
               </span>
             ) : (
               <span
                 className="movie-item__card-footer-star-button movie-item__card-footer-star-button--active"
                 data-testid="unstar-link"
                 onClick={removeFromStarMovie}>
-                <i className="fi fi-sr-wishlist-star" data-testid="star-fill" />
+                <i className="fi fi-rr-wishlist-star" data-testid="star-fill" />
               </span>
             )}
           </div>
