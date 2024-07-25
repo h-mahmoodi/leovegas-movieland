@@ -15,7 +15,7 @@ const initialState: InitialState = {
   fetchStatus: 'loading',
   currentPage: 1,
   hasMoreToFetch: true,
-  totalResults: 0
+  totalResults: 0,
 };
 
 export const fetchMovies = createAsyncThunk(
@@ -23,23 +23,25 @@ export const fetchMovies = createAsyncThunk(
   async ({ apiUrl, page }: { apiUrl: string; page: number }) => {
     const response = await fetch(`${apiUrl}&page=${page}`);
     const responseData = await response.json();
-    await new Promise((resolve, _reject) => {
+    await new Promise((resolve) => {
       setTimeout(resolve, 500);
     });
 
-    const normalizedMovies: IMovieSummery[] = responseData.results.map((movie: IMovie) => ({
-      id: movie.id,
-      overview: movie.overview,
-      release_date: movie.release_date?.substring(0, 4),
-      poster_path: movie.poster_path,
-      title: movie.title,
-      vote_average: movie.vote_average
-    }));
+    const normalizedMovies: IMovieSummery[] = responseData.results.map(
+      (movie: IMovie) => ({
+        id: movie.id,
+        overview: movie.overview,
+        release_date: movie.release_date?.substring(0, 4),
+        poster_path: movie.poster_path,
+        title: movie.title,
+        vote_average: movie.vote_average,
+      })
+    );
     return {
       movies: normalizedMovies,
       page: page,
       totalPages: responseData.total_pages,
-      totalResults: responseData.total_results
+      totalResults: responseData.total_results,
     };
   }
 );
@@ -53,7 +55,7 @@ const moviesSlice = createSlice({
       state.currentPage = 1;
       state.hasMoreToFetch = true;
       state.totalResults = 0;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -70,7 +72,7 @@ const moviesSlice = createSlice({
       .addCase(fetchMovies.rejected, (state) => {
         state.fetchStatus = 'error';
       });
-  }
+  },
 });
 
 export default moviesSlice;

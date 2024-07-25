@@ -9,7 +9,7 @@ interface InitialState {
 }
 
 const initialState: InitialState = {
-  movies: loadFromLocalStorage(WATCH_LATER_STORAGE_KEY)
+  movies: loadFromLocalStorage(WATCH_LATER_STORAGE_KEY),
 };
 
 const watchLaterSlice = createSlice({
@@ -18,16 +18,24 @@ const watchLaterSlice = createSlice({
   reducers: {
     addToWatchLater: (state, action: PayloadAction<IMovieSummery>) => {
       state.movies = [action.payload, ...state.movies];
-      saveToLocalStorage<IMovieSummery[]>(WATCH_LATER_STORAGE_KEY, state.movies);
+      saveToLocalStorage<IMovieSummery[]>(
+        WATCH_LATER_STORAGE_KEY,
+        state.movies
+      );
     },
     removeFromWatchLater: (state, action: PayloadAction<IMovieSummery>) => {
-      state.movies = state.movies.filter((movie) => movie.id !== action.payload.id);
-      saveToLocalStorage<IMovieSummery[]>(WATCH_LATER_STORAGE_KEY, state.movies);
+      state.movies = state.movies.filter(
+        (movie) => movie.id !== action.payload.id
+      );
+      saveToLocalStorage<IMovieSummery[]>(
+        WATCH_LATER_STORAGE_KEY,
+        state.movies
+      );
     },
     remveAllWatchLater: (state) => {
       state.movies = [];
-    }
-  }
+    },
+  },
 });
 
 export default watchLaterSlice;

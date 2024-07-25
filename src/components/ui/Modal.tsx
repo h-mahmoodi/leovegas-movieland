@@ -1,9 +1,9 @@
-import { createPortal } from "react-dom";
-import appSlice from "../../data/appSlice";
-import useAppDispatch from "../../hooks/useAppDispatch";
-import YoutubePlayer from "./YoutubePlayer";
-import useAppSelector from "../../hooks/useAppSelector";
-import Loader from "./Loader";
+import { createPortal } from 'react-dom';
+import appSlice from '../../data/appSlice';
+import useAppDispatch from '../../hooks/useAppDispatch';
+import YoutubePlayer from './YoutubePlayer';
+import useAppSelector from '../../hooks/useAppSelector';
+import Loader from './Loader';
 
 const Modal = () => {
   const { trailerKey, loadingTrailer, movie } = useAppSelector(
@@ -25,10 +25,10 @@ const Modal = () => {
             <i className="fi fi-rr-cross"></i>
           </button>
         </div>
-        {loadingTrailer === "loading" && <Loader />}
+        {loadingTrailer === 'loading' && <Loader />}
         <div className="modal-body">
           {trailerKey && <YoutubePlayer videoKey={trailerKey} />}
-          {loadingTrailer !== "loading" && !trailerKey && (
+          {loadingTrailer !== 'loading' && !trailerKey && (
             <div className="modal-error">
               <i className="modal-error-icon fi fi-rr-diamond-exclamation"></i>
               <h6>no trailer available. Try another movie</h6>
@@ -38,7 +38,7 @@ const Modal = () => {
         <div className="modal-overview">{movie.overview}</div>
       </div>
     </div>,
-    document.querySelector("#modal")!
+    document.querySelector('#modal')!
   );
 };
 

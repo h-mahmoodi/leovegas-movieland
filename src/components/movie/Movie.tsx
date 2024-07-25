@@ -28,7 +28,7 @@ const Movie = ({ movie }: MovieProps) => {
       release_date: movie.release_date?.substring(0, 4),
       poster_path: movie.poster_path,
       title: movie.title,
-      vote_average: movie.vote_average
+      vote_average: movie.vote_average,
     };
     dispatch(addToWatchLater(movieItem));
   };
@@ -45,7 +45,7 @@ const Movie = ({ movie }: MovieProps) => {
         release_date: movie.release_date?.substring(0, 4),
         poster_path: movie.poster_path,
         title: movie.title,
-        vote_average: movie.vote_average
+        vote_average: movie.vote_average,
       })
     );
   };
@@ -63,7 +63,10 @@ const Movie = ({ movie }: MovieProps) => {
 
   return (
     <div className="movie-item">
-      <div className="movie-item__card" onClick={(e) => e.currentTarget.classList.add('opened')}>
+      <div
+        className="movie-item__card"
+        onClick={(e) => e.currentTarget.classList.add('opened')}
+      >
         <div className="movie-item__card-header">{movie.title}</div>
         <div
           className="movie-item__card-body"
@@ -75,35 +78,47 @@ const Movie = ({ movie }: MovieProps) => {
                   : placeholder
               }
                 
-            )`
-          }}>
+            )`,
+          }}
+        >
           {/* <div className="overlay" /> */}
           <div className="movie-item__card-body__info">
             <div>
               <button
                 type="button"
                 className="movie-item__card-body__info-play-button"
-                onClick={() => viewTrailerHandler(movie)}>
+                onClick={() => viewTrailerHandler(movie)}
+              >
                 <i className="fi fi-rr-play-circle"></i>
               </button>
-              <h3 className="movie-item__card-body__info-title">Watch Trailer</h3>
+              <h3 className="movie-item__card-body__info-title">
+                Watch Trailer
+              </h3>
             </div>
 
             <div className="movie-item__card-body__info__overview">
-              <h3 className="movie-item__card-body__info__overview-name">{movie.title}</h3>
+              <h3 className="movie-item__card-body__info__overview-name">
+                {movie.title}
+              </h3>
               <div className="movie-item__card-body__info__overview-header">
-                <div className="movie-item__card-body__info__overview-title">Summary</div>
+                <div className="movie-item__card-body__info__overview-title">
+                  Summary
+                </div>
                 <div className="movie-item__card-body__info__overview-year">
                   {movie.release_date?.substring(0, 4)}
                 </div>
               </div>
-              <div className="movie-item__card-body__info__overview-body">{movie.overview}</div>
+              <div className="movie-item__card-body__info__overview-body">
+                {movie.overview}
+              </div>
             </div>
           </div>
         </div>
         <div className="movie-item__card-footer">
           <div>
-            <span>IMDB: {movie.vote_average ? movie.vote_average.toFixed(1) : 0}</span>
+            <span>
+              IMDB: {movie.vote_average ? movie.vote_average.toFixed(1) : 0}
+            </span>
           </div>
           <div className="movie-item__card-footer_buttons">
             {!watchLater.movies.map((movie) => movie.id).includes(movie.id) ? (
@@ -111,7 +126,8 @@ const Movie = ({ movie }: MovieProps) => {
                 type="button"
                 data-testid="watch-later"
                 className="movie-item__card-footer-later-button"
-                onClick={addToWatchLaterHandler}>
+                onClick={addToWatchLaterHandler}
+              >
                 <i className="fi fi-rr-video-duration"></i>
               </button>
             ) : (
@@ -119,7 +135,8 @@ const Movie = ({ movie }: MovieProps) => {
                 type="button"
                 data-testid="remove-watch-later"
                 className="movie-item__card-footer-later-button movie-item__card-footer-later-button--active"
-                onClick={removeFromWatchLaterHandler}>
+                onClick={removeFromWatchLaterHandler}
+              >
                 <i className="fi fi-rr-video-duration"></i>
               </button>
             )}
@@ -127,14 +144,16 @@ const Movie = ({ movie }: MovieProps) => {
               <span
                 className="movie-item__card-footer-star-button"
                 data-testid="starred-link"
-                onClick={addToStarMovieHandler}>
+                onClick={addToStarMovieHandler}
+              >
                 <i className="fi fi-rr-wishlist-star"></i>
               </span>
             ) : (
               <span
                 className="movie-item__card-footer-star-button movie-item__card-footer-star-button--active"
                 data-testid="unstar-link"
-                onClick={removeFromStarMovie}>
+                onClick={removeFromStarMovie}
+              >
                 <i className="fi fi-rr-wishlist-star" data-testid="star-fill" />
               </span>
             )}

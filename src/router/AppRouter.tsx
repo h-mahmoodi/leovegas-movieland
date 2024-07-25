@@ -1,9 +1,9 @@
-import { Route, Routes } from "react-router-dom";
-import Layout from "../components/layout/Layout";
-import HomePage from "../pages/HomePage";
-import WatchLaterPage from "../pages/WatchLaterPage";
-import StarredMoviesPage from "../pages/StarredMoviesPage";
-import SearchPage from "../pages/SearchPage";
+import { Route, Routes } from 'react-router-dom';
+import Layout from '../components/layout/Layout';
+import HomePage from '../pages/HomePage';
+import WatchLaterPage from '../pages/WatchLaterPage';
+import StarredMoviesPage from '../pages/StarredMoviesPage';
+import SearchPage from '../pages/SearchPage';
 
 const AppRouter = () => {
   return (

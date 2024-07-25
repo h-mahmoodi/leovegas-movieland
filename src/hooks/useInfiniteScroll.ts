@@ -5,7 +5,10 @@ interface useInfiniteScrollProps {
   hasMoreToFetch: boolean;
 }
 
-const useInfiniteScroll = ({ fetcher, hasMoreToFetch }: useInfiniteScrollProps) => {
+const useInfiniteScroll = ({
+  fetcher,
+  hasMoreToFetch,
+}: useInfiniteScrollProps) => {
   const observerRef = useRef<IntersectionObserver | null>(null);
   const loaderRef = useRef<HTMLDivElement | null>(null);
 

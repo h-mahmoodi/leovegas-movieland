@@ -1,12 +1,15 @@
 import { type ChangeEvent, type FormEvent, useEffect, useState } from 'react';
-import { createSearchParams, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import {
+  createSearchParams,
+  useNavigate,
+  useSearchParams,
+} from 'react-router-dom';
 
 import useDebounce from '../../hooks/useDebounce';
 
 const HeaderSearch = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get('title');
   const [searchText, setSearchText] = useState<string>(searchQuery || '');
   const debounceValue = useDebounce(searchText, 400);
@@ -16,8 +19,8 @@ const HeaderSearch = () => {
     navigate({
       pathname: '/search',
       search: createSearchParams({
-        title: searchedTitle
-      }).toString()
+        title: searchedTitle,
+      }).toString(),
     });
   };
 

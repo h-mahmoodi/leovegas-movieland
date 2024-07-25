@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import useAppDispatch from '../hooks/useAppDispatch';
 import useAppSelector from '../hooks/useAppSelector';
@@ -37,7 +37,10 @@ const HomePage = () => {
     }
   }, [fetchStatus, currentPage, getMovies]);
 
-  const loaderRef = useInfiniteScroll({ fetcher: loadMoreMovies, hasMoreToFetch });
+  const loaderRef = useInfiniteScroll({
+    fetcher: loadMoreMovies,
+    hasMoreToFetch,
+  });
 
   if (!fetchStatus || fetchStatus === 'error') {
     return <h1 className="text-center">Something is wrong.😓 </h1>;

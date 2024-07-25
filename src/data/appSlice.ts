@@ -13,20 +13,25 @@ const initialState: InitialState = {
   isModal: false,
   loadingTrailer: 'loading',
   trailerKey: null,
-  movie: { title: '', overview: '' }
+  movie: { title: '', overview: '' },
 };
 
-export const fetchTrailer = createAsyncThunk('fetch-trailer', async (id: string) => {
-  const URL = ENDPOINT_MOVIE.replace('<MOVIE_ID>', id);
-  const videoData = await fetch(URL).then((response) => response.json());
-  if (videoData.videos.results.length) {
-    const trailer = videoData.videos.results.find(
-      (vid: Record<string, unknown>) => vid.type === 'Trailer'
-    );
-    const trailerKey = trailer ? trailer.key : videoData.videos.results[0].key;
-    return trailerKey;
+export const fetchTrailer = createAsyncThunk(
+  'fetch-trailer',
+  async (id: string) => {
+    const URL = ENDPOINT_MOVIE.replace('<MOVIE_ID>', id);
+    const videoData = await fetch(URL).then((response) => response.json());
+    if (videoData.videos.results.length) {
+      const trailer = videoData.videos.results.find(
+        (vid: Record<string, unknown>) => vid.type === 'Trailer'
+      );
+      const trailerKey = trailer
+        ? trailer.key
+        : videoData.videos.results[0].key;
+      return trailerKey;
+    }
   }
-});
+);
 
 const appSlice = createSlice({
   name: 'app',
@@ -45,7 +50,7 @@ const appSlice = createSlice({
     movieDetails: (state, action) => {
       state.movie.title = action.payload.title;
       state.movie.overview = action.payload.overview;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -59,6 +64,6 @@ const appSlice = createSlice({
       .addCase(fetchTrailer.rejected, (state) => {
         state.loadingTrailer = 'error';
       });
-  }
+  },
 });
 export default appSlice;

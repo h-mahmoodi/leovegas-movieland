@@ -9,7 +9,7 @@ interface InitialState {
 }
 
 const initialState: InitialState = {
-  movies: loadFromLocalStorage(STARRED_STORAGE_KEY)
+  movies: loadFromLocalStorage(STARRED_STORAGE_KEY),
 };
 
 const starredSlice = createSlice({
@@ -21,13 +21,15 @@ const starredSlice = createSlice({
       saveToLocalStorage<IMovieSummery[]>(STARRED_STORAGE_KEY, state.movies);
     },
     unstarMovie: (state, action: PayloadAction<IMovieSummery>) => {
-      state.movies = state.movies.filter((movie) => movie.id !== action.payload.id);
+      state.movies = state.movies.filter(
+        (movie) => movie.id !== action.payload.id
+      );
       saveToLocalStorage<IMovieSummery[]>(STARRED_STORAGE_KEY, state.movies);
     },
     clearAllStarred: (state) => {
       state.movies = [];
-    }
-  }
+    },
+  },
 });
 
 export default starredSlice;

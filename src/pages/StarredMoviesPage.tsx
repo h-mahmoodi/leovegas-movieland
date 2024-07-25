@@ -41,7 +41,9 @@ const StarredMoviesPage = () => {
       {movies.length === 0 && (
         <div className="starred-movies__empty">
           <i className="starred-movies__empty-icon fi fi-rr-diamond-exclamation"></i>
-          <p className="starred-movies__empty-message">You have no movies as starred.</p>
+          <p className="starred-movies__empty-message">
+            You have no movies as starred.
+          </p>
           <Link to="/" className="starred-movies__empty-link">
             Go to Home
           </Link>

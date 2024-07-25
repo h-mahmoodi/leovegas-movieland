@@ -10,8 +10,8 @@ const store = configureStore({
     app: appSlice.reducer,
     movies: moviesSlice.reducer,
     starred: starredSlice.reducer,
-    watchLater: watchLaterSlice.reducer
-  }
+    watchLater: watchLaterSlice.reducer,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

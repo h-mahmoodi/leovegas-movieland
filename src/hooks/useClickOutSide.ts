@@ -2,7 +2,10 @@ import { RefObject, useEffect } from 'react';
 
 type Event = MouseEvent | TouchEvent;
 
-const useClickOutSide = (ref: RefObject<HTMLDivElement>, handler: (event: Event) => void) => {
+const useClickOutSide = (
+  ref: RefObject<HTMLDivElement>,
+  handler: (event: Event) => void
+) => {
   useEffect(() => {
     const listener = (event: Event) => {
       // Do nothing if clicking ref's element or descendent elements

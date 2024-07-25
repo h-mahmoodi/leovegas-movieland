@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 import useAppDispatch from '../hooks/useAppDispatch';
 import useAppSelector from '../hooks/useAppSelector';
@@ -13,14 +13,12 @@ import Loader from '../components/ui/Loader';
 import MoviesList from '../components/movie/MoviesList';
 
 const SearchPage = () => {
-  const { movies, fetchStatus, currentPage, hasMoreToFetch, totalResults } = useAppSelector(
-    (state) => state.movies
-  );
+  const { movies, fetchStatus, currentPage, hasMoreToFetch, totalResults } =
+    useAppSelector((state) => state.movies);
   const dispatch = useAppDispatch();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get('title');
   const initialFetchRef = useRef<boolean>(false);
-  const navigate = useNavigate();
 
   const getMovies = useCallback(
     (page: number) => {
@@ -42,7 +40,10 @@ const SearchPage = () => {
     }
   }, [fetchStatus, currentPage, getMovies]);
 
-  const loaderRef = useInfiniteScroll({ fetcher: loadMoreMovies, hasMoreToFetch });
+  const loaderRef = useInfiniteScroll({
+    fetcher: loadMoreMovies,
+    hasMoreToFetch,
+  });
 
   if (!fetchStatus || fetchStatus === 'error') {
     return <h1 className="text-center">Something is wrong.😓 </h1>;
@@ -55,7 +56,9 @@ const SearchPage = () => {
           <h2 className="search-page_header-title">Search For Movies</h2>
           <div className="search-page_header-report">
             You are searching for
-            <span className="search-page_header-report-info">{searchQuery}</span>
+            <span className="search-page_header-report-info">
+              {searchQuery}
+            </span>
             with
             <span className="search-page_header-report-info">
               {fetchStatus === 'loading' ? '--' : totalResults}
