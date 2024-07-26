@@ -42,7 +42,7 @@ const StarredMoviesPage = () => {
         <div className="starred-movies__empty">
           <i className="starred-movies__empty-icon fi fi-rr-diamond-exclamation"></i>
           <p className="starred-movies__empty-message">
-            You have no movies as starred.
+            There are no starred movies
           </p>
           <Link to="/" className="starred-movies__empty-link">
             Go to Home

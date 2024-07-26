@@ -16,7 +16,7 @@ const Modal = () => {
   };
 
   return createPortal(
-    <div className="modal-container">
+    <div className="modal-container" data-testid="modal-video">
       <div className="modal-overlay" onClick={closeModalHandler}></div>
       <div className="modal-wrapper">
         <div className="modal-header">

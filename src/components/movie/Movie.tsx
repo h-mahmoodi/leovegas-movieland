@@ -88,6 +88,7 @@ const Movie = ({ movie }: MovieProps) => {
                 type="button"
                 className="movie-item__card-body__info-play-button"
                 onClick={() => viewTrailerHandler(movie)}
+                data-testid="watch-trailer"
               >
                 <i className="fi fi-rr-play-circle"></i>
               </button>

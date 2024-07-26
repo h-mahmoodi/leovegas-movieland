@@ -42,10 +42,10 @@ a:active {
     max-width: 900px;
   }
   @include screen(tablet) {
-    max-width: 600px;
+    max-width: 640px;
   }
   @include screen(mobile) {
-    max-width: 300px;
+    max-width: 480px;
   }
 }
 
