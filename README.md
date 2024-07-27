@@ -81,15 +81,119 @@ The user interface of LeoVegas MovieLand is designed with user experience in min
 
 ### Problems
 
-- **constants.js at lines 3 & 4**: Remove "/" before "?" to solve the 404 network error and start using query strings.
+#### For the entire project
 
-### Nice to Have
+- **Nice to Have** : Add .env file for the project.
+- **Nice to Have** : It's better to have a Router.jsx to handle all the routes (using Layout.jsx and <Outlet />).
+- **Nice to Have** : Avoid props drilling between components.
+- **Nice to Have** : It's better to have smaller components instead of having a big component like App.jsx.
+- **Nice to Have** : Instead of adding scss for each component it's better to add all of them in on place (7-1 Architecture)
+- **Nice to Have** : Using flex-box and grid-layout instead of float-layouts
+- **Nice to Have** : Using rem unit instead of px to have a better responsive design based on the browser's default font size
+- **Nice to Have** : Using meaningful class names using BEM methodology (Block Element Modifier)
 
-- **constants.js**: Use a structured .env file to avoid passing critical information throughout the app.
+#### File : index.html
 
-### My Approach and Features Added
+- **Nice to Have** : At lines 12 => Add a fit meta description for project.
 
-[Include details about your approach and the features you have added here.]
+#### File : package.json
+
+- **Problem** : Using sass package instead of node-sass (based on react documentation)
+- **Nice to Have** : Seprate development and main dependencies (devDependencies & dependencies)
+
+#### File : constants.js
+
+- **Problem** : At lines 3 & 4 => Remove "/" before "?" to solve the 404 network error and start using query strings.
+- **Problem** : Avoid exporting and passing API_KEY & ENDPOINT (security resean)
+- **Nice to Have** : Move API_KEY & ENDPOINT to the env file.
+- **Nice to Have** : A function to replace API_KEY & ENDPOINT to other constants (DRY).
+
+#### File : App.jsx
+
+- **Nice to Have** : At lines 16 & 17 => Using Object Destructuring
+
+```bash
+const { movies } = useSelector((state) => state)
+```
+
+- **Problem** : At lines 27 => avoid using useless and empty function(closeCard).
+- **Problem** : At lines 54 to 58 => setOpen(true) is always called.
+- **Nice to Have** : At lines 87 => avoid using inline styles as posible as we can.
+- **Nice to Have** : Move logics and functionalities to their own components like (routing in jsx ,searchMovies ,getMovie ,viewTrailer and ...) to have smaller app.js file.
+
+#### File : Movie.jsx
+
+- **Problem** : At line 6 => 'closeCard' prop is never used.
+- **Nice to Have** : At lines 8 & 9 => Using Object Destructuring
+- **Problem** : At line 15 to 20 => using e.stopPropagation() at first.
+- **Problem** : At line 19 & 24=> Avoid touch the dom directly in react(you can use useRef hook or jsx condition rendering)
+- **Nice to Have** : At line 32 to 38 & 48 to 54 => Move dispatch function to a handler function to have leaner jsx
+- **Nice to Have** : Move starredMovies and watchLAterMovies logics from jsx to their own components or pages.
+- **Noties** : The movie component is used just for showing a movie's details, we must not use unrelated complex logic inside it.
+
+#### File : Movies.jsx
+
+- **Nice to Have** : At lines 2 => instead of adding scss for each component we can add all of them in one file line App.js
+- **Noties** : It's better to avoid props drilling like (viewTrailer, closeCard),we can use redux or contextApi instead
+
+#### File : Header.jsx
+
+- **Problem** : Avoid using onClick on Link Component
+- **Problem** : We must have a debounce for typing in the input and fetch new data to decrease network requests
+- **Nice to Have** : At lines 33 to 41 => it's better to avoid using input inside a Link component ,we can use onClick handler on input to navigate instead
+
+#### File : Starred.jsx
+
+- **Nice to Have** : At lines 5 => instead of adding scss for each component we can add all of them in one file line App.js
+- **Nice to Have** : At lines 9 & 10 => Using Object Destructuring.
+- **Nice to Have** : At line 29 => Move dispatch function to a handler function to have leaner jsx.
+
+#### File : WatchLater.jsx
+
+- **Nice to Have** : At lines 5 => instead of adding scss for each component we can add all of them in one file line App.js
+- **Nice to Have** : At lines 9 & 10 => Using Object Destructuring.
+- **Nice to Have** : At line 29 => Move dispatch function to a handler function to have leaner jsx.
+
+#### File : moviesSlice.js
+
+- **Nice to Have** : At lines 5 => Normalizing the data in fetcher to pass the data that we need,not all the data about each movie.
+
+```bash
+{
+        id: movie.id,
+        overview: movie.overview,
+        release_date: movie.release_date?.substring(0, 4),
+        poster_path: movie.poster_path,
+        title: movie.title,
+        vote_average: movie.vote_average,
+}
+```
+
+- **Nice to Have** : At lines 27 => Export reducer and actions separately instead of exporting all the slices with one export.
+
+#### File : starredSlice.js
+
+- **Nice to Have** : At lines 22 => Export reducer and actions separately instead of exporting all the slices with one export.
+
+#### File : watchLaterSlice.js
+
+- **Nice to Have** : At lines 22 => Export reducer and actions separately instead of exporting all the slices with one export.
+
+### My Approach and Features I've Added
+
+- **For Styling** : I've used Pure CSS with using SASS instead of bootstrap in the project , I've added layout for the project , I've used flatIcon CDN instead of bootstrap icons(To have nicer icons).
+- **For Responsive Design** : I've added 4 different Breakpoints with using @mixin in scss.
+- **For TypeSafety** : I've added Typescript to the project.
+- **For State** : I've used Redux to avoid props driling and added appSlice for handeling modal state.
+- **For Components** : I've added smaller components and Router component to have cleaner and maintanable project.
+- **For Pages** : I've added page components to handle the logic of each page inside them.
+- **For Keeping User Data** : I've added LocalStorage to project to keep the previous user activities.
+- **For Search Movies** : I've added Search page using useSearchparams to use URL state and keep the searched data.
+- **For Modal** : I've added a Modal component with using createPortal() and appSlice to load it in one place all the time.
+- **For Normalizing the Movies** : I've added two different types IMovie(incoming data from API) and IMovieSummary(normalized data).
+- **For InfiniteScroll** : I've added a useInfiniteScroll hook with using IntersectionObserve and useRef to handle it.
+
+![LeoVegas MovieLand Logo](https://raw.githubusercontent.com/h-mahmoodi/leovegas-movieland/working/public/docs/app-test.jpg)
 
 ## How It Works
 
