@@ -1,26 +1,58 @@
-# Movieland 
+![LeoVegas MovieLand Logo](path_to_your_logo)
 
-React + Redux + RTK + Bootstrap application that fetches movies from [https://www.themoviedb.org/](https://www.themoviedb.org/)
+# LeoVegas MovieLand
 
-Created with [Create React App](https://github.com/facebook/create-react-app).
+LeoVegas MovieLand is a comprehensive platform for movie enthusiasts. Our goal is to provide users with an intuitive and engaging interface to explore, discover, and review movies from around the world.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [All About the Project](#all-about-the-project)
+  - [Description](#description)
+  - [Technologies](#technologies)
+  - [UI and Styles](#ui-and-styles)
+- [Code Review Task#1](#code-review)
+- [How It Works](#how-it-works)
+  - [Installation](#installation)
+- [Resources](#resources)
 
-### `npm install`
+## All About the Project
 
-Install all dependencies
+### Description
 
-### `npm start`
+LeoVegas MovieLand is a comprehensive platform for movie enthusiasts. Our goal is to provide users with an intuitive and engaging interface to explore, discover, and review movies from around the world.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Technologies
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The project leverages a modern tech stack to ensure high performance and scalability. Key technologies include:
 
-### `npm test`
+- **Language** : JavaScript + TypeScript
+- **UI Library** : React (Create React App)
+- **Router** : React Router Dom
+- **State management** : Redux Tool kit (RTK)
+- **Testing Library** : Jest + React Testing Library
+- **UI Styling** : SASS (.scss) + CSS
+- **others** : EsLint / Prettier / LocalStorage / dotenv / react-player
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### UI and Styles
+
+The user interface of LeoVegas MovieLand is designed with user experience in mind. Key UI features include:
+
+- **Responsive Design** : Responsive design for 4 different Breakpoints
+- **Theme Structure** : Using 7-1 Sass Architecture and variables to have a theme system.
+- **SASS Structure** : Using BEM (Block Element Modifire) naming methodology for class names.
+
+#### Color Palatte and pattern
+
+![LeoVegas MovieLand Logo](path_to_your_logo)
+
+### Code Review Task#1
+
+#### Problems
+
+- **constants.js at line 3 & 4** : Remove "/" before "?" to solve 404 network error and start using query string
+
+#### Nice to have
+
+- **constants.js** : using structured .env file to avoid passing critical informations along the app
+
+#### My approach and the Featurs that I've added
