@@ -1,8 +1,10 @@
-![LeoVegas MovieLand Logo](path_to_your_logo)
+![LeoVegas MovieLand Logo](https://raw.githubusercontent.com/h-mahmoodi/leovegas-movieland/working/public/docs/app-logo.png)
 
 # LeoVegas MovieLand
 
 LeoVegas MovieLand is a comprehensive platform for movie enthusiasts. Our goal is to provide users with an intuitive and engaging interface to explore, discover, and review movies from around the world.
+
+![LeoVegas MovieLand Demo](https://raw.githubusercontent.com/h-mahmoodi/leovegas-movieland/working/public/docs/app-demo.png)
 
 ## Table of Contents
 
@@ -43,7 +45,7 @@ The user interface of LeoVegas MovieLand is designed with user experience in min
 
 #### Color Palatte and pattern
 
-![LeoVegas MovieLand Logo](path_to_your_logo)
+![LeoVegas MovieLand Logo](https://raw.githubusercontent.com/h-mahmoodi/leovegas-movieland/working/public/docs/app-colors.jpg)
 
 ### Code Review Task#1
 
