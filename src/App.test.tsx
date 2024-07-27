@@ -18,11 +18,14 @@ it('search for movies', async () => {
   );
   const user = userEvent.setup();
   await user.type(screen.getByTestId('search-movies'), 'forrest gump');
-  await waitFor(() => {
-    expect(
-      screen.getAllByText(/Through the Eyes of Forrest Gump/i)[0]
-    ).toBeInTheDocument();
-  });
+  await waitFor(
+    () => {
+      expect(
+        screen.getAllByText(/Through the Eyes of Forrest Gump/i)[0]
+      ).toBeInTheDocument();
+    },
+    { timeout: 5000 }
+  );
   const viewTrailerBtn = screen.getAllByTestId('watch-trailer')[0];
   await user.click(viewTrailerBtn);
   await waitFor(() => {

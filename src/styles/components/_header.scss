@@ -5,13 +5,14 @@ header {
   z-index: 999;
   background: $color_dark_dark;
   width: 100%;
-
-  padding: 2rem 0rem;
+  border-bottom: 5px solid $color_secondary_main;
+  // padding: 0.5rem 0rem;
 
   .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     @include screen(tablet) {
       flex-direction: column;
       align-items: start;
@@ -29,6 +30,9 @@ header {
 
     i {
       font-size: 4rem;
+    }
+    img {
+      width: 25rem;
     }
   }
 

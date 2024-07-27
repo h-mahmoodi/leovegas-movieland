@@ -52,5 +52,9 @@
 }
 
 .active {
-  background-color: $color_primary_main;
+  background-color: $color_primary_dark;
+
+  &:hover {
+    background-color: $color_primary_dark;
+  }
 }

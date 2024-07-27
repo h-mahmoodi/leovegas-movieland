@@ -11,6 +11,7 @@ const config: Config.InitialOptions = {
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
     '\\.(jpg|jpeg|png|gif|webp|svg)$': 'jest-transform-stub',
   },
+  testMatch: ['<rootDir>/src/**/*.test.tsx', '<rootDir>/src/**/*.test.ts'],
   transformIgnorePatterns: ['<rootDir>/node_modules/'],
 };
 

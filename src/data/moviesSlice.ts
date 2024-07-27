@@ -24,7 +24,7 @@ export const fetchMovies = createAsyncThunk(
     const response = await fetch(`${apiUrl}&page=${page}`);
     const responseData = await response.json();
     // await new Promise((resolve) => {
-    //   setTimeout(resolve, 500);
+    //   setTimeout(resolve, 300);
     // });
 
     const normalizedMovies: IMovieSummery[] = responseData.results.map(

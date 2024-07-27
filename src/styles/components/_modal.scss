@@ -3,8 +3,8 @@
     position: fixed;
     top: 0;
     left: 0;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     z-index: 9999;
     display: flex;
     justify-content: center;
@@ -16,8 +16,8 @@
     position: fixed;
     top: 0;
     left: 0;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     background-color: #0e0e0eed;
   }
   &-wrapper {
@@ -28,7 +28,18 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    // width: 64rem;
+    max-width: 60%;
+
+    @include screen(tablet-landscape) {
+      max-width: 80%;
+    }
+    @include screen(tablet) {
+      max-width: 80%;
+    }
+    @include screen(mobile) {
+      margin-top: 4rem;
+      max-width: 90%;
+    }
   }
   &-header {
     display: flex;
@@ -55,7 +66,7 @@
     }
   }
   &-overview {
-    width: 63rem;
+    width: 100%;
     text-align: left;
     padding-top: 1rem;
     line-height: 1.5;
@@ -69,5 +80,9 @@
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+  }
+
+  .video-player {
+    width: 100% !important;
   }
 }

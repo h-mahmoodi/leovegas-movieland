@@ -7,11 +7,14 @@ it('Watch Later movies page', async () => {
   renderWithProviders(<App />);
   const user = userEvent.setup();
   await user.type(screen.getByTestId('search-movies'), 'forrest gump');
-  await waitFor(() => {
-    expect(
-      screen.getAllByText('Through the Eyes of Forrest Gump')[0]
-    ).toBeInTheDocument();
-  });
+  await waitFor(
+    () => {
+      expect(
+        screen.getAllByText('Through the Eyes of Forrest Gump')[0]
+      ).toBeInTheDocument();
+    },
+    { timeout: 5000 }
+  );
   const watchLaterLink = screen.getAllByTestId('watch-later')[0];
   await waitFor(() => {
     expect(watchLaterLink).toBeInTheDocument();
