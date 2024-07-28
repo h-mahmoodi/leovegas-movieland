@@ -39,8 +39,7 @@
         "tabWidth": 2
       }
     ],
-    "react/react-in-jsx-scope": "off",
-    "throwIfNamespace": false
+    "react/react-in-jsx-scope": "off"
   },
   "settings": {
     "react": {

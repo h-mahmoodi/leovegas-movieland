@@ -11,11 +11,11 @@ This project is a comprehensive React-based client application developed by Hesa
 - [All About the Project](#all-about-the-project)
   - [Description](#description)
   - [Technologies](#technologies)
-  - [UI and Styles](#ui-and-styles)
+  - [App Features](#app-features)
+    - [UI and Styles](#ui-and-design)
+    - [My Approach and Features](#my-approach-and-features)
 - [Code Review Task#1](#code-review-task1)
-  - [Problems](#problems)
-  - [Nice to Have](#nice-to-have)
-  - [My Approach and Features Added](#my-approach-and-features-added)
+  - [Problems & Improvments](#problems)
 - [How It Works](#how-it-works)
   - [Installation](#installation)
 - [Resources](#resources)
@@ -77,6 +77,20 @@ The user interface of LeoVegas MovieLand is designed with user experience in min
 
 ![LeoVegas MovieLand Colors](https://raw.githubusercontent.com/h-mahmoodi/leovegas-movieland/working/public/docs/app-colors.jpg)
 
+### My Approach and Features
+
+- **For Styling** : I've used Pure CSS with using SASS instead of bootstrap in the project , I've added layout for the project , I've used flatIcon CDN instead of bootstrap icons(To have nicer icons).
+- **For Responsive Design** : I've added 4 different Breakpoints with using @mixin in scss.
+- **For TypeSafety** : I've added Typescript to the project.
+- **For State** : I've used Redux to avoid props driling and added appSlice for handeling modal state.
+- **For Components** : I've added smaller components and Router component to have cleaner and maintanable project.
+- **For Pages** : I've added page components to handle the logic of each page inside them.
+- **For Keeping User Data** : I've added LocalStorage to project to keep the previous user activities.
+- **For Search Movies** : I've added Search page using useSearchparams to use URL state and keep the searched data.
+- **For Modal** : I've added a Modal component with using createPortal() and appSlice to load it in one place all the time.
+- **For Normalizing the Movies** : I've added two different types IMovie(incoming data from API) and IMovieSummary(normalized data).
+- **For InfiniteScroll** : I've added a useInfiniteScroll hook with using IntersectionObserve and useRef to handle it.
+
 ## Code Review Task#1
 
 ### Problems
@@ -112,8 +126,8 @@ The user interface of LeoVegas MovieLand is designed with user experience in min
 
 - **Nice to Have** : At lines 16 & 17 => Using Object Destructuring
 
-```bash
-const { movies } = useSelector((state) => state)
+```javascript
+const { movies } = useSelector((state) => state);
 ```
 
 - **Problem** : At lines 27 => avoid using useless and empty function(closeCard).
@@ -158,7 +172,7 @@ const { movies } = useSelector((state) => state)
 
 - **Nice to Have** : At lines 5 => Normalizing the data in fetcher to pass the data that we need,not all the data about each movie.
 
-```bash
+```javascript
 {
         id: movie.id,
         overview: movie.overview,
@@ -179,29 +193,48 @@ const { movies } = useSelector((state) => state)
 
 - **Nice to Have** : At lines 22 => Export reducer and actions separately instead of exporting all the slices with one export.
 
-### My Approach and Features I've Added
-
-- **For Styling** : I've used Pure CSS with using SASS instead of bootstrap in the project , I've added layout for the project , I've used flatIcon CDN instead of bootstrap icons(To have nicer icons).
-- **For Responsive Design** : I've added 4 different Breakpoints with using @mixin in scss.
-- **For TypeSafety** : I've added Typescript to the project.
-- **For State** : I've used Redux to avoid props driling and added appSlice for handeling modal state.
-- **For Components** : I've added smaller components and Router component to have cleaner and maintanable project.
-- **For Pages** : I've added page components to handle the logic of each page inside them.
-- **For Keeping User Data** : I've added LocalStorage to project to keep the previous user activities.
-- **For Search Movies** : I've added Search page using useSearchparams to use URL state and keep the searched data.
-- **For Modal** : I've added a Modal component with using createPortal() and appSlice to load it in one place all the time.
-- **For Normalizing the Movies** : I've added two different types IMovie(incoming data from API) and IMovieSummary(normalized data).
-- **For InfiniteScroll** : I've added a useInfiniteScroll hook with using IntersectionObserve and useRef to handle it.
+#### Folder Structure and Tests :
 
 ![LeoVegas MovieLand Logo](https://raw.githubusercontent.com/h-mahmoodi/leovegas-movieland/working/public/docs/app-test.jpg)
 
 ## How It Works
 
+I've created two branches in the project repository.
+
+**_main_** : initial project without any changes.
+
+**_working_** : My final project with all the commits (connected to the Netlify CD )
+
 ### Installation
 
 To set up the project locally, follow these steps:
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/h-mahmoodi/leovegas-movieland.git
-   ```
+**Clone the repository**:
+
+```bash
+git clone https://github.com/h-mahmoodi/leovegas-movieland.git
+```
+
+**Navigate to the project directory**:
+
+```bash
+cd leovegas-movieland
+```
+
+**Install dependencies**:
+
+```bash
+npm install
+```
+
+**Start the development server:**:
+
+```bash
+npm run start
+```
+
+### Resources
+
+**Live Demo on Netlify** : https://leovegas-movieland.netlify.app/
+
+**Github** : https://github.com/h-mahmoodi/leovegas-movieland
