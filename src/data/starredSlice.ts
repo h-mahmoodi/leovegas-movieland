@@ -28,6 +28,7 @@ const starredSlice = createSlice({
     },
     clearAllStarred: (state) => {
       state.movies = [];
+      saveToLocalStorage<IMovieSummery[]>(STARRED_STORAGE_KEY, state.movies);
     },
   },
 });

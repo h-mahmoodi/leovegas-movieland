@@ -34,6 +34,10 @@ const watchLaterSlice = createSlice({
     },
     remveAllWatchLater: (state) => {
       state.movies = [];
+      saveToLocalStorage<IMovieSummery[]>(
+        WATCH_LATER_STORAGE_KEY,
+        state.movies
+      );
     },
   },
 });
