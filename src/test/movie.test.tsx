@@ -12,13 +12,6 @@ it('search for a movie , movies starred and saved to watch later', async () => {
   );
   const user = userEvent.setup();
 
-  // await user.type(screen.getByTestId('search-movies'), 'Forrest');
-  // await waitFor(() => {
-  //   const movieElements = screen.queryAllByText(/forrest gump/i);
-  //   console.log('Movie elements found:', movieElements);
-  //   expect(movieElements.length).toBeGreaterThan(0);
-  // });
-
   // test to find the movie after search
   await user.type(screen.getByTestId('search-movies'), 'Forrest');
   await waitFor(

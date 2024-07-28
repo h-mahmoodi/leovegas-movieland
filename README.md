@@ -2,7 +2,7 @@
 
 # LeoVegas MovieLand
 
-This project is a comprehensive React-based client application developed by Hesam Mahmoodi. It was created as part of a coding assignment for the Software Engineer position at LeoVegas. The application utilizes a variety of modern frontend libraries and tools to deliver a seamless user experience. Below is a detailed breakdown of the project's features, technologies, and purpose.
+This project is a comprehensive React-based client application developed by Hesam Mahmoodi. It was created as part of a coding assignment for the Software Engineer position at LeoVegas. The application utilizes a variety of modern front-end libraries and tools to deliver a seamless user experience. Below is a detailed breakdown of the project's features, technologies, and purpose.
 
 ![LeoVegas MovieLand Demo](https://raw.githubusercontent.com/h-mahmoodi/leovegas-movieland/working/public/docs/app-demo.jpg)
 
@@ -24,7 +24,7 @@ This project is a comprehensive React-based client application developed by Hesa
 
 ### Description
 
-The application is designed to demonstrate proficiency in React and associated frontend technologies. It provides a clean, responsive user interface that showcases key skills relevant to the Software Engineer role.
+The application is designed to demonstrate proficiency in React and associated front-end technologies. It provides a clean, responsive user interface that showcases key skills relevant to the Software Engineer role.
 
 - To exhibit a solid understanding of React and its ecosystem.
 - To implement best practices in frontend development.
@@ -51,8 +51,8 @@ The project leverages a modern tech stack to ensure high performance and scalabi
 
 #### Tooling
 
-- **ESLint**: For maintaining code quality and consistency.
-- **Prettier**: For formatting code to ensure consistency.
+- **ESLint**: To maintain code quality and consistency.
+- **Prettier**: This is for formatting code to ensure consistency.
 
 ### App Features
 
@@ -79,17 +79,17 @@ The user interface of LeoVegas MovieLand is designed with user experience in min
 
 ### My Approach and Features
 
-- **For Styling** : I've used Pure CSS with using SASS instead of bootstrap in the project , I've added layout for the project , I've used flatIcon CDN instead of bootstrap icons(To have nicer icons).
+- **For Styling**: I've used Pure CSS using SASS instead of Bootstrap in the project, I've added a layout for the project, and I've used flatIcon CDN instead of Bootstrap icons(To have nicer icons).
 - **For Responsive Design** : I've added 4 different Breakpoints with using @mixin in scss.
-- **For TypeSafety** : I've added Typescript to the project.
-- **For State** : I've used Redux to avoid props driling and added appSlice for handeling modal state.
-- **For Components** : I've added smaller components and Router component to have cleaner and maintanable project.
-- **For Pages** : I've added page components to handle the logic of each page inside them.
-- **For Keeping User Data** : I've added LocalStorage to project to keep the previous user activities.
-- **For Search Movies** : I've added Search page using useSearchparams to use URL state and keep the searched data.
-- **For Modal** : I've added a Modal component with using createPortal() and appSlice to load it in one place all the time.
+- **For TypeSafety**: I've added Typescript to the project.
+- **For State**: I've used Redux to avoid props drilling and added appSlice for handling modal state.
+- **For Components**: I've added smaller components and Router components to have a cleaner and maintainable project.
+- **For Pages**: I've added page components to handle the logic of each page inside them.
+- **For Keeping User Data**: I've added LocalStorage to the project to keep the previous user activities.
+- **For Search Movies**: I've added a Search page using useSearchparams to use the URL state and keep the searched data.
+- **For Modal**: I've added a Modal component with using createPortal() and appSlice to load it in one place all the time.
 - **For Normalizing the Movies** : I've added two different types IMovie(incoming data from API) and IMovieSummary(normalized data).
-- **For InfiniteScroll** : I've added a useInfiniteScroll hook with using IntersectionObserve and useRef to handle it.
+- **For InfiniteScroll**: I've added a useInfiniteScroll hook with using IntersectionObserve and useRef to handle it.
 
 ## Code Review Task#1
 
@@ -97,14 +97,15 @@ The user interface of LeoVegas MovieLand is designed with user experience in min
 
 #### For the entire project
 
-- **Nice to Have** : Add .env file for the project.
-- **Nice to Have** : It's better to have a Router.jsx to handle all the routes (using Layout.jsx and <Outlet />).
+- **Nice to Have**: Add .env file for the project.
+- **Nice to Have**: It's better to have a Router.jsx to handle all the routes (using Layout.jsx and <Outlet />).
 - **Nice to Have** : Avoid props drilling between components.
-- **Nice to Have** : It's better to have smaller components instead of having a big component like App.jsx.
-- **Nice to Have** : Instead of adding scss for each component it's better to add all of them in on place (7-1 Architecture)
-- **Nice to Have** : Using flex-box and grid-layout instead of float-layouts
-- **Nice to Have** : Using rem unit instead of px to have a better responsive design based on the browser's default font size
-- **Nice to Have** : Using meaningful class names using BEM methodology (Block Element Modifier)
+- **Nice to Have**: It's better to have smaller components instead of having a big component like App.jsx.
+- **Nice to Have**: Instead of adding scss for each component it's better to add all of them in one place (7-1 Architecture)
+- **Nice to Have**: Using flex-box and grid-layout instead of float-layouts
+- **Nice to Have**: Using rem unit instead of px to have a better responsive design based on the browser's default font size
+- **Nice to Have**: Using meaningful class names using BEM methodology (Block Element Modifier).
+- **Notice**: After installing packages with (npm install), it shows us 8 vulnerabilities (2 moderate, 6 high). based on react documentation and Dan Abramov(creator of CRA) it's not a security problem and we can ignore it or We can use VITE instead.
 
 #### File : index.html
 
@@ -112,13 +113,13 @@ The user interface of LeoVegas MovieLand is designed with user experience in min
 
 #### File : package.json
 
-- **Problem** : Using sass package instead of node-sass (based on react documentation)
-- **Nice to Have** : Seprate development and main dependencies (devDependencies & dependencies)
+- **Problem**: Using the sass package instead of node-sass (based on react documentation)
+- **Nice to Have** : Separate development and main dependencies (devDependencies & dependencies)
 
 #### File : constants.js
 
-- **Problem** : At lines 3 & 4 => Remove "/" before "?" to solve the 404 network error and start using query strings.
-- **Problem** : Avoid exporting and passing API_KEY & ENDPOINT (security resean)
+- **Problem**: At lines 3 & 4 => Remove "/" before "?" to solve the 404 network error and start using query strings.
+- **Problem** : Avoid exporting and passing API_KEY & ENDPOINT (security reason)
 - **Nice to Have** : Move API_KEY & ENDPOINT to the env file.
 - **Nice to Have** : A function to replace API_KEY & ENDPOINT to other constants (DRY).
 
@@ -133,7 +134,7 @@ const { movies } = useSelector((state) => state);
 - **Problem** : At lines 27 => avoid using useless and empty function(closeCard).
 - **Problem** : At lines 54 to 58 => setOpen(true) is always called.
 - **Nice to Have** : At lines 87 => avoid using inline styles as posible as we can.
-- **Nice to Have** : Move logics and functionalities to their own components like (routing in jsx ,searchMovies ,getMovie ,viewTrailer and ...) to have smaller app.js file.
+- **Nice to Have**: Move logics and functionalities to their own components like (routing in jsx ,searchMovies ,getMovie ,viewTrailer and ...) to have smaller app.js file.
 
 #### File : Movie.jsx
 
@@ -141,36 +142,36 @@ const { movies } = useSelector((state) => state);
 - **Nice to Have** : At lines 8 & 9 => Using Object Destructuring
 - **Problem** : At line 15 to 20 => using e.stopPropagation() at first.
 - **Problem** : At line 19 & 24=> Avoid touch the dom directly in react(you can use useRef hook or jsx condition rendering)
-- **Nice to Have** : At line 32 to 38 & 48 to 54 => Move dispatch function to a handler function to have leaner jsx
-- **Nice to Have** : Move starredMovies and watchLAterMovies logics from jsx to their own components or pages.
-- **Noties** : The movie component is used just for showing a movie's details, we must not use unrelated complex logic inside it.
+- **Nice to Have**: At lines 32 to 38 & 48 to 54 => Move the dispatch function to a handler function to have leaner jsx
+- **Nice to Have**: Move starredMovies and watchLAterMovies logics from jsx to their own components or pages.
+- **Notice**: The movie component is used just for showing a movie's details, we must not use unrelated complex logic inside it.
 
 #### File : Movies.jsx
 
-- **Nice to Have** : At lines 2 => instead of adding scss for each component we can add all of them in one file line App.js
-- **Noties** : It's better to avoid props drilling like (viewTrailer, closeCard),we can use redux or contextApi instead
+- **Nice to Have**: At lines 2 => instead of adding scss for each component we can add all of them in one file line App.js
+- **Notice**: It's better to avoid props drilling like (viewTrailer, closeCard),we can use redux or contextApi instead
 
 #### File : Header.jsx
 
-- **Problem** : Avoid using onClick on Link Component
-- **Problem** : We must have a debounce for typing in the input and fetch new data to decrease network requests
-- **Nice to Have** : At lines 33 to 41 => it's better to avoid using input inside a Link component ,we can use onClick handler on input to navigate instead
+- **Problem**: Avoid using onClick on Link Component
+- **Problem**: We must have a debounce for typing in the input and fetch new data to decrease network requests
+- **Nice to Have**: At lines 33 to 41 => it's better to avoid using input inside a Link component,we can use onClick handler on input to navigate instead
 
 #### File : Starred.jsx
 
-- **Nice to Have** : At lines 5 => instead of adding scss for each component we can add all of them in one file line App.js
+- **Nice to Have**: At lines 5 => instead of adding scss for each component we can add all of them in one file line App.js
 - **Nice to Have** : At lines 9 & 10 => Using Object Destructuring.
-- **Nice to Have** : At line 29 => Move dispatch function to a handler function to have leaner jsx.
+- **Nice to Have**: At line 29 => Move dispatch function to a handler function to have leaner jsx.
 
 #### File : WatchLater.jsx
 
-- **Nice to Have** : At lines 5 => instead of adding scss for each component we can add all of them in one file line App.js
+- **Nice to Have**: At lines 5 => instead of adding scss for each component we can add all of them in one file line App.js
 - **Nice to Have** : At lines 9 & 10 => Using Object Destructuring.
-- **Nice to Have** : At line 29 => Move dispatch function to a handler function to have leaner jsx.
+- **Nice to Have**: At line 29 => Move dispatch function to a handler function to have leaner jsx.
 
 #### File : moviesSlice.js
 
-- **Nice to Have** : At lines 5 => Normalizing the data in fetcher to pass the data that we need,not all the data about each movie.
+- **Nice to Have**: At lines 5 => Normalizing the data in fetcher to pass the data that we need,not all the data about each movie.
 
 ```javascript
 {
@@ -183,15 +184,15 @@ const { movies } = useSelector((state) => state);
 }
 ```
 
-- **Nice to Have** : At lines 27 => Export reducer and actions separately instead of exporting all the slices with one export.
+- **Nice to Have**: At lines 27 => Export reducer and actions separately instead of exporting all the slices with one export.
 
 #### File : starredSlice.js
 
-- **Nice to Have** : At lines 22 => Export reducer and actions separately instead of exporting all the slices with one export.
+- **Nice to Have**: At lines 22 => Export reducer and actions separately instead of exporting all the slices with one export.
 
 #### File : watchLaterSlice.js
 
-- **Nice to Have** : At lines 22 => Export reducer and actions separately instead of exporting all the slices with one export.
+- **Nice to Have**: At lines 22 => Export reducer and actions separately instead of exporting all the slices with one export.
 
 #### Folder Structure and Tests :
 
@@ -201,9 +202,9 @@ const { movies } = useSelector((state) => state);
 
 I've created two branches in the project repository.
 
-**_main_** : initial project without any changes.
+**_main_**: initial project without any changes.
 
-**_working_** : My final project with all the commits (connected to the Netlify CD )
+**_working_**: My final project with all the commits (connected to the Netlify CD )
 
 ### Installation
 
@@ -235,6 +236,6 @@ npm run start
 
 ### Resources
 
-**Live Demo on Netlify** : https://leovegas-movieland.netlify.app/
+**Live Demo on Netlify**: https://leovegas-movieland.netlify.app/
 
 **Github** : https://github.com/h-mahmoodi/leovegas-movieland

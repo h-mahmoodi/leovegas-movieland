@@ -20,10 +20,4 @@ it('Watch Later movies page', async () => {
     expect(watchLaterLink).toBeInTheDocument();
   });
   await userEvent.click(watchLaterLink);
-
-  // const watchLaterink = screen.getByTestId('watch-later-div')
-  // await waitFor(() => {
-  //     expect(watchLaterink).toBeInTheDocument()
-  // })
-  // await userEvent.click(watchLaterink)
 });
