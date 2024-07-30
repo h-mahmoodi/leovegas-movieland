@@ -1,64 +1,54 @@
 import useAppSelector from '../../hooks/useAppSelector';
 import useAppDispatch from '../../hooks/useAppDispatch';
 
-import starredSlice from '../../data/starredSlice';
-import watchLaterSlice from '../../data/watchLaterSlice';
-import appSlice, { fetchTrailer } from '../../data/appSlice';
+import { openModal, movieDetails } from '../../data/appSlice';
+import { starMovie, unstarMovie } from '../../data/starredSlice';
+import {
+  addToWatchLater,
+  removeFromWatchLater,
+} from '../../data/watchLaterSlice';
 
 import { type IMovieSummery } from '../../types/Movie';
 
 import placeholder from '../../assets/not-found-500X750.jpeg';
+import { saveWatchLaterMovies } from '../../data/thunks/watchLaterThunks';
+import { saveStarredMovies } from '../../data/thunks/starredThunks';
+import { fetchTrailer } from '../../data/thunks/appThunks';
 interface MovieProps {
   movie: IMovieSummery;
 }
 
 const Movie = ({ movie }: MovieProps) => {
-  const starred = useAppSelector((state) => state.starred);
-  const watchLater = useAppSelector((state) => state.watchLater);
   const dispatch = useAppDispatch();
-
-  const { starMovie, unstarMovie } = starredSlice.actions;
-  const { addToWatchLater, removeFromWatchLater } = watchLaterSlice.actions;
-  const { openModal, movieDetails } = appSlice.actions;
+  const starredMovies = useAppSelector((state) => state.starred.movies);
+  const watchLaterMovies = useAppSelector((state) => state.watchLater.movies);
 
   const addToWatchLaterHandler = () => {
-    const movieItem: IMovieSummery = {
-      id: movie.id,
-      overview: movie.overview,
-      release_date: movie.release_date?.substring(0, 4),
-      poster_path: movie.poster_path,
-      title: movie.title,
-      vote_average: movie.vote_average,
-    };
-    dispatch(addToWatchLater(movieItem));
+    dispatch(addToWatchLater(movie));
+    dispatch(saveWatchLaterMovies([...watchLaterMovies, movie]));
   };
 
   const removeFromWatchLaterHandler = () => {
     dispatch(removeFromWatchLater(movie));
+    const updatedMovies = watchLaterMovies.filter((m) => m.id !== movie.id);
+    dispatch(saveWatchLaterMovies(updatedMovies));
   };
 
   const addToStarMovieHandler = () => {
-    dispatch(
-      starMovie({
-        id: movie.id,
-        overview: movie.overview,
-        release_date: movie.release_date?.substring(0, 4),
-        poster_path: movie.poster_path,
-        title: movie.title,
-        vote_average: movie.vote_average,
-      })
-    );
+    dispatch(starMovie(movie));
+    dispatch(saveStarredMovies([...starredMovies, movie]));
   };
 
   const removeFromStarMovie = () => {
     dispatch(unstarMovie(movie));
+    const updatedMovies = starredMovies.filter((m) => m.id !== movie.id);
+    dispatch(saveStarredMovies(updatedMovies));
   };
 
   const viewTrailerHandler = async (movie: IMovieSummery) => {
     dispatch(openModal());
     dispatch(movieDetails({ title: movie.title, overview: movie.overview }));
     dispatch(fetchTrailer(movie.id.toString()));
-    // console.log(await fetchTrailer(id));
   };
 
   return (
@@ -81,7 +71,6 @@ const Movie = ({ movie }: MovieProps) => {
             )`,
           }}
         >
-          {/* <div className="overlay" /> */}
           <div className="movie-item__card-body__info">
             <div>
               <button
@@ -122,7 +111,7 @@ const Movie = ({ movie }: MovieProps) => {
             </span>
           </div>
           <div className="movie-item__card-footer_buttons">
-            {!watchLater.movies.map((movie) => movie.id).includes(movie.id) ? (
+            {!watchLaterMovies.find((item) => item.id === movie.id) ? (
               <button
                 type="button"
                 data-testid="watch-later"
@@ -141,7 +130,8 @@ const Movie = ({ movie }: MovieProps) => {
                 <i className="fi fi-rr-video-duration"></i>
               </button>
             )}
-            {!starred.movies.map((movie) => movie.id).includes(movie.id) ? (
+
+            {!starredMovies.find((item) => item.id === movie.id) ? (
               <span
                 className="movie-item__card-footer-star-button"
                 data-testid="starred-link"
@@ -160,15 +150,6 @@ const Movie = ({ movie }: MovieProps) => {
             )}
           </div>
         </div>
-
-        {/* <button
-          type="button"
-          className="close"
-          onClick={(e) => myClickHandler(e)}
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button> */}
       </div>
     </div>
   );

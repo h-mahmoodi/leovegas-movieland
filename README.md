@@ -143,7 +143,8 @@ const { movies } = useSelector((state) => state);
 - **Problem** : At line 15 to 20 => using e.stopPropagation() at first.
 - **Problem** : At line 19 & 24=> Avoid touch the dom directly in react(you can use useRef hook or jsx condition rendering)
 - **Nice to Have**: At lines 32 to 38 & 48 to 54 => Move the dispatch function to a handler function to have leaner jsx
-- **Nice to Have**: Move starredMovies and watchLAterMovies logics from jsx to their own components or pages.
+- **Nice to Have**: At lines 114 & 133 => Using starredMovies.find() method instead of starredMovies.map().includes() and use watchLaterMovies.find() method instead of watchLaterMovies.map().includes()
+- **Nice to Have**: Move starredMovies and watchLaterMovies logics from jsx to their own components or pages.
 - **Notice**: The movie component is used just for showing a movie's details, we must not use unrelated complex logic inside it.
 
 #### File : Movies.jsx

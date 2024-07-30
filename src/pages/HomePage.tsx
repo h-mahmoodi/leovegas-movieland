@@ -6,7 +6,8 @@ import useInfiniteScroll from '../hooks/useInfiniteScroll';
 
 import { ENDPOINT_DISCOVER } from '../constants';
 
-import moviesSlice, { fetchMovies } from '../data/moviesSlice';
+import { resetMovies } from '../data/moviesSlice';
+import { fetchMovies } from '../data/thunks/moviesThunks';
 
 import MoviesList from '../components/movie/MoviesList';
 import Loader from '../components/ui/Loader';
@@ -27,7 +28,7 @@ const HomePage = () => {
   );
 
   useEffect(() => {
-    dispatch(moviesSlice.actions.resetMovies());
+    dispatch(resetMovies());
     getMovies(1);
   }, [dispatch, getMovies]);
 

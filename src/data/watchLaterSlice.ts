@@ -1,45 +1,47 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import {
+  loadWatchLaterMovies,
+  saveWatchLaterMovies,
+} from './thunks/watchLaterThunks';
+
 import { type IMovieSummery } from '../types/Movie';
-import { loadFromLocalStorage, saveToLocalStorage } from '../lib/helpers';
-import { WATCH_LATER_STORAGE_KEY } from '../constants';
 
 interface InitialState {
   movies: IMovieSummery[];
 }
 
 const initialState: InitialState = {
-  movies: loadFromLocalStorage(WATCH_LATER_STORAGE_KEY),
+  movies: [],
 };
 
 const watchLaterSlice = createSlice({
-  name: 'watch-later',
+  name: 'watchLater',
   initialState: initialState,
   reducers: {
     addToWatchLater: (state, action: PayloadAction<IMovieSummery>) => {
       state.movies = [action.payload, ...state.movies];
-      saveToLocalStorage<IMovieSummery[]>(
-        WATCH_LATER_STORAGE_KEY,
-        state.movies
-      );
     },
     removeFromWatchLater: (state, action: PayloadAction<IMovieSummery>) => {
       state.movies = state.movies.filter(
         (movie) => movie.id !== action.payload.id
       );
-      saveToLocalStorage<IMovieSummery[]>(
-        WATCH_LATER_STORAGE_KEY,
-        state.movies
-      );
     },
-    remveAllWatchLater: (state) => {
+    removeAllWatchLater: (state) => {
       state.movies = [];
-      saveToLocalStorage<IMovieSummery[]>(
-        WATCH_LATER_STORAGE_KEY,
-        state.movies
-      );
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(loadWatchLaterMovies.fulfilled, (state, action) => {
+        state.movies = action.payload;
+      })
+      .addCase(saveWatchLaterMovies.fulfilled, (state, action) => {
+        state.movies = action.payload;
+      });
   },
 });
 
-export default watchLaterSlice;
+export const { addToWatchLater, removeFromWatchLater, removeAllWatchLater } =
+  watchLaterSlice.actions;
+export default watchLaterSlice.reducer;

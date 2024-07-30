@@ -1,8 +1,10 @@
 import { createPortal } from 'react-dom';
-import appSlice from '../../data/appSlice';
+
+import { closeModal } from '../../data/appSlice';
 import useAppDispatch from '../../hooks/useAppDispatch';
-import YoutubePlayer from './YoutubePlayer';
 import useAppSelector from '../../hooks/useAppSelector';
+
+import YoutubePlayer from './YoutubePlayer';
 import Loader from './Loader';
 
 const Modal = () => {
@@ -10,7 +12,6 @@ const Modal = () => {
     (state) => state.app
   );
   const dispatch = useAppDispatch();
-  const { closeModal } = appSlice.actions;
   const closeModalHandler = () => {
     dispatch(closeModal());
   };

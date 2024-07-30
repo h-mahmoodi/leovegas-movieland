@@ -1,21 +1,22 @@
-import useAppSelector from './hooks/useAppSelector';
-
+import { useEffect } from 'react';
 import AppRouter from './router/AppRouter';
-import Modal from './components/ui/Modal';
+
+import useAppDispatch from './hooks/useAppDispatch';
+
+import { loadStarredMovies } from './data/thunks/starredThunks';
+import { loadWatchLaterMovies } from './data/thunks/watchLaterThunks';
 
 import './styles/main.scss';
-// import React from 'react';
-// import React from 'react';
 
 const App = () => {
-  const { isModal } = useAppSelector((state) => state.app);
+  const dispatch = useAppDispatch();
 
-  return (
-    <>
-      <AppRouter />
-      {isModal && <Modal />}
-    </>
-  );
+  useEffect(() => {
+    dispatch(loadStarredMovies());
+    dispatch(loadWatchLaterMovies());
+  }, [dispatch]);
+
+  return <AppRouter />;
 };
 
 export default App;

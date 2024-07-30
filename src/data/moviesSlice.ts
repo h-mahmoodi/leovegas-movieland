@@ -1,6 +1,8 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
-import { type IMovie, type IMovieSummery } from '../types/Movie';
+import { fetchMovies } from './thunks/moviesThunks';
+
+import { type IMovieSummery } from '../types/Movie';
 
 interface InitialState {
   movies: IMovieSummery[];
@@ -17,34 +19,6 @@ const initialState: InitialState = {
   hasMoreToFetch: true,
   totalResults: 0,
 };
-
-export const fetchMovies = createAsyncThunk(
-  'fetch-movies',
-  async ({ apiUrl, page }: { apiUrl: string; page: number }) => {
-    const response = await fetch(`${apiUrl}&page=${page}`);
-    const responseData = await response.json();
-    // await new Promise((resolve) => {
-    //   setTimeout(resolve, 300);
-    // });
-
-    const normalizedMovies: IMovieSummery[] = responseData.results.map(
-      (movie: IMovie) => ({
-        id: movie.id,
-        overview: movie.overview,
-        release_date: movie.release_date?.substring(0, 4),
-        poster_path: movie.poster_path,
-        title: movie.title,
-        vote_average: movie.vote_average,
-      })
-    );
-    return {
-      movies: normalizedMovies,
-      page: page,
-      totalPages: responseData.total_pages,
-      totalResults: responseData.total_results,
-    };
-  }
-);
 
 const moviesSlice = createSlice({
   name: 'movies',
@@ -75,4 +49,5 @@ const moviesSlice = createSlice({
   },
 });
 
-export default moviesSlice;
+export const { resetMovies } = moviesSlice.actions;
+export default moviesSlice.reducer;

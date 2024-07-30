@@ -7,10 +7,11 @@ import useInfiniteScroll from '../hooks/useInfiniteScroll';
 
 import { ENDPOINT_SEARCH } from '../constants';
 
-import moviesSlice, { fetchMovies } from '../data/moviesSlice';
+import { resetMovies } from '../data/moviesSlice';
 
 import Loader from '../components/ui/Loader';
 import MoviesList from '../components/movie/MoviesList';
+import { fetchMovies } from '../data/thunks/moviesThunks';
 
 const SearchPage = () => {
   const { movies, fetchStatus, currentPage, hasMoreToFetch, totalResults } =
@@ -29,7 +30,7 @@ const SearchPage = () => {
   );
 
   useEffect(() => {
-    dispatch(moviesSlice.actions.resetMovies());
+    dispatch(resetMovies());
     getMovies(1);
     initialFetchRef.current = false;
   }, [searchQuery, dispatch, getMovies]);

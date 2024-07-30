@@ -7,7 +7,6 @@ const Header = () => {
     <header>
       <div className="container header">
         <HeaderLogo />
-
         <div className="navbar">
           <HeaderNav />
           <HeaderSearch />

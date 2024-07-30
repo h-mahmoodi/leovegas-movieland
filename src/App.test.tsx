@@ -3,10 +3,13 @@ import userEvent from '@testing-library/user-event';
 import { renderWithProviders } from './test/utils';
 import App from './App';
 
-it('renders watch later link', () => {
+it('renders watch later link', async () => {
   renderWithProviders(<App />);
-  const linkElement = screen.getAllByText(/watch later/i);
-  expect(linkElement[0]).toBeInTheDocument();
+
+  await waitFor(async () => {
+    const linkElement = screen.getAllByText(/watch later/i);
+    expect(linkElement[0]).toBeInTheDocument();
+  });
 });
 
 it('search for movies', async () => {

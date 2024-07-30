@@ -1,8 +1,10 @@
 import { useRef, useState } from 'react';
+
 import useAppSelector from '../../hooks/useAppSelector';
+import useClickOutSide from '../../hooks/useClickOutSide';
+
 import Button from '../ui/Button';
 import Link from '../ui/Link';
-import useClickOutSide from '../../hooks/useClickOutSide';
 
 const HeaderNav = () => {
   const { movies: starMovies } = useAppSelector((state) => state.starred);
