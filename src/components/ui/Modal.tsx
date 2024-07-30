@@ -1,37 +1,34 @@
 import { createPortal } from 'react-dom';
 
-import { closeModal } from '../../data/appSlice';
-import useAppDispatch from '../../hooks/useAppDispatch';
-import useAppSelector from '../../hooks/useAppSelector';
-
 import YoutubePlayer from './YoutubePlayer';
 import Loader from './Loader';
+import { IMovieSummery } from '../../types/Movie';
+import useLoadTrailer from '../../hooks/useLoadTrailer';
 
-const Modal = () => {
-  const { trailerKey, loadingTrailer, movie } = useAppSelector(
-    (state) => state.app
-  );
-  const dispatch = useAppDispatch();
-  const closeModalHandler = () => {
-    dispatch(closeModal());
-  };
+interface ModalProps {
+  onClose: () => void;
+  movie: IMovieSummery;
+}
+
+const Modal = ({ onClose, movie }: ModalProps) => {
+  const { status, trailerKey } = useLoadTrailer(movie.id);
 
   return createPortal(
     <div className="modal-container" data-testid="modal-video">
-      <div className="modal-overlay" onClick={closeModalHandler}></div>
+      <div className="modal-overlay" onClick={onClose}></div>
       <div className="modal-wrapper">
         <div className="modal-header">
           <h2 className="modal-header-title">{movie.title}</h2>
-          <button className="modal-header-close" onClick={closeModalHandler}>
+          <button className="modal-header-close" onClick={onClose}>
             <i className="fi fi-rr-cross"></i>
           </button>
         </div>
-        {loadingTrailer === 'loading' && <Loader />}
+        {status === 'loading' && <Loader />}
         <div className="modal-body">
           {trailerKey ? (
             <YoutubePlayer videoKey={trailerKey} />
           ) : (
-            loadingTrailer !== 'loading' && (
+            status !== 'loading' && (
               <div className="modal-error" aria-live="assertive">
                 <i className="modal-error-icon fi fi-rr-diamond-exclamation"></i>
                 <h6>No trailer available. Try another movie.</h6>

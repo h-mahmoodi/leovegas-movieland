@@ -10,7 +10,6 @@ import { type RootState } from '../data/store';
 import moviesSliceReducer from '../data/moviesSlice';
 import starredSliceReducer from '../data/starredSlice';
 import watchLaterSliceReducer from '../data/watchLaterSlice';
-import appSliceReducer from '../data/appSlice';
 
 interface RenderWithProvidersOptions extends RenderOptions {
   preloadedState?: Partial<RootState>;
@@ -26,7 +25,6 @@ export function renderWithProviders(
         movies: moviesSliceReducer,
         starred: starredSliceReducer,
         watchLater: watchLaterSliceReducer,
-        app: appSliceReducer,
       },
       preloadedState,
     }),
