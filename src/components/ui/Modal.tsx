@@ -28,12 +28,15 @@ const Modal = () => {
         </div>
         {loadingTrailer === 'loading' && <Loader />}
         <div className="modal-body">
-          {trailerKey && <YoutubePlayer videoKey={trailerKey} />}
-          {loadingTrailer !== 'loading' && !trailerKey && (
-            <div className="modal-error">
-              <i className="modal-error-icon fi fi-rr-diamond-exclamation"></i>
-              <h6>no trailer available. Try another movie</h6>
-            </div>
+          {trailerKey ? (
+            <YoutubePlayer videoKey={trailerKey} />
+          ) : (
+            loadingTrailer !== 'loading' && (
+              <div className="modal-error" aria-live="assertive">
+                <i className="modal-error-icon fi fi-rr-diamond-exclamation"></i>
+                <h6>No trailer available. Try another movie.</h6>
+              </div>
+            )
           )}
         </div>
         <div className="modal-overview">{movie.overview}</div>

@@ -50,12 +50,15 @@ const HeaderSearch = () => {
     <form onSubmit={submitHandler}>
       <label className="search">
         <span className="">
-          {isLoading && <i className="spinner fi fi-rr-spinner"></i>}
-          {!isLoading && <i className="fi fi-rr-search"></i>}
+          {isLoading ? (
+            <i className="spinner fi fi-rr-spinner"></i>
+          ) : (
+            <i className="fi fi-rr-search"></i>
+          )}
         </span>
         <input
           type="search"
-          name="searcg"
+          name="search"
           data-testid="search-movies"
           placeholder="Search movies..."
           aria-label="Search movies"

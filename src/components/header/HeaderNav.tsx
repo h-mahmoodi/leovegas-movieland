@@ -7,10 +7,8 @@ import Button from '../ui/Button';
 import Link from '../ui/Link';
 
 const HeaderNav = () => {
-  const { movies: starMovies } = useAppSelector((state) => state.starred);
-  const { movies: watchLaterMovies } = useAppSelector(
-    (state) => state.watchLater
-  );
+  const starMovies = useAppSelector((state) => state.starred.movies);
+  const watchLaterMovies = useAppSelector((state) => state.watchLater.movies);
   const [sidebar, setSidebar] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 

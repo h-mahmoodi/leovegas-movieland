@@ -138,6 +138,8 @@
         color: $color_light_dark;
         font-size: 2rem;
         cursor: pointer;
+        background-color: unset;
+        border: none;
 
         &--active {
           color: $color_secondary_light;

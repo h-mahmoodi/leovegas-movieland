@@ -18,7 +18,7 @@ const StarredMoviesPage = () => {
     dispatch(saveStarredMovies([]));
   };
 
-  const hasStarredMovies = starredMovies.length > 0 ? true : false;
+  const hasStarredMovies = starredMovies.length > 0;
 
   return (
     <div className="starred-movies__page" data-testid="starred">
@@ -27,31 +27,31 @@ const StarredMoviesPage = () => {
           <h6 className="starred-movies__header-title">
             Starred movies List: ({starredMovies.length} movies)
           </h6>
-          {hasStarredMovies && (
-            <Button buttonStyle="secondary" onClick={removeAllHandler}>
-              <i className="fi fi-rr-trash"></i>
-              <span>Remove all</span>
-            </Button>
-          )}
+          <Button
+            buttonStyle="secondary"
+            onClick={removeAllHandler}
+            disabled={!hasStarredMovies}
+          >
+            <i className="fi fi-rr-trash"></i>
+            <span>Remove all</span>
+          </Button>
         </div>
-        {hasStarredMovies && (
+        {hasStarredMovies ? (
           <div className="starred-movies__movies">
             <MoviesList movies={starredMovies} />
           </div>
+        ) : (
+          <div className="starred-movies__empty">
+            <i className="starred-movies__empty-icon fi fi-rr-diamond-exclamation"></i>
+            <p className="starred-movies__empty-message">
+              There are no starred movies
+            </p>
+            <Link to="/" className="link link-secondary">
+              Go to Home
+            </Link>
+          </div>
         )}
       </div>
-
-      {!hasStarredMovies && (
-        <div className="starred-movies__empty">
-          <i className="starred-movies__empty-icon fi fi-rr-diamond-exclamation"></i>
-          <p className="starred-movies__empty-message">
-            There are no starred movies
-          </p>
-          <Link to="/" className="starred-movies__empty-link">
-            Go to Home
-          </Link>
-        </div>
-      )}
     </div>
   );
 };

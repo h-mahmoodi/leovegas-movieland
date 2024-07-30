@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import useAppDispatch from '../hooks/useAppDispatch';
@@ -8,18 +8,17 @@ import useInfiniteScroll from '../hooks/useInfiniteScroll';
 import { ENDPOINT_SEARCH } from '../constants';
 
 import { resetMovies } from '../data/moviesSlice';
+import { fetchMovies } from '../data/thunks/moviesThunks';
 
 import Loader from '../components/ui/Loader';
 import MoviesList from '../components/movie/MoviesList';
-import { fetchMovies } from '../data/thunks/moviesThunks';
 
 const SearchPage = () => {
   const { movies, fetchStatus, currentPage, hasMoreToFetch, totalResults } =
     useAppSelector((state) => state.movies);
   const dispatch = useAppDispatch();
   const [searchParams] = useSearchParams();
-  const searchQuery = searchParams.get('title');
-  const initialFetchRef = useRef<boolean>(false);
+  const searchQuery = searchParams.get('title') || '';
 
   const getMovies = useCallback(
     (page: number) => {
@@ -32,7 +31,6 @@ const SearchPage = () => {
   useEffect(() => {
     dispatch(resetMovies());
     getMovies(1);
-    initialFetchRef.current = false;
   }, [searchQuery, dispatch, getMovies]);
 
   const loadMoreMovies = useCallback(() => {
@@ -46,7 +44,7 @@ const SearchPage = () => {
     hasMoreToFetch,
   });
 
-  if (!fetchStatus || fetchStatus === 'error') {
+  if (fetchStatus === 'error') {
     return <h1 className="text-center">Something is wrong.😓 </h1>;
   }
 

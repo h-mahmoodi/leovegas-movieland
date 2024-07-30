@@ -6,7 +6,7 @@ import { type IMovieSummery } from '../types/Movie';
 
 interface InitialState {
   movies: IMovieSummery[];
-  fetchStatus?: 'success' | 'loading' | 'error';
+  fetchStatus: 'success' | 'loading' | 'error';
   currentPage: number;
   hasMoreToFetch: boolean;
   totalResults: number;
@@ -29,16 +29,21 @@ const moviesSlice = createSlice({
       state.currentPage = 1;
       state.hasMoreToFetch = true;
       state.totalResults = 0;
+      state.fetchStatus = 'loading';
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchMovies.fulfilled, (state, action) => {
-        state.movies = [...state.movies, ...action.payload.movies];
+        const { movies, page, totalPages, totalResults } = action.payload;
+        state.movies = [...state.movies, ...movies];
         state.fetchStatus = 'success';
-        state.currentPage = action.payload.page;
-        state.hasMoreToFetch = action.payload.page < action.payload.totalPages;
-        state.totalResults = action.payload.totalResults;
+        state.currentPage = page;
+        state.hasMoreToFetch = action.payload.page < totalPages;
+        state.totalResults = totalResults;
+        if (movies.length === 0) {
+          state.hasMoreToFetch = false;
+        }
       })
       .addCase(fetchMovies.pending, (state) => {
         state.fetchStatus = 'loading';

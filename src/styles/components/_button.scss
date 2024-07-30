@@ -46,6 +46,12 @@
     }
   }
 
+  &:disabled {
+    background-color: $color_dark_dark;
+    cursor: default;
+    border-color: $color_dark_light;
+  }
+
   i {
     font-size: 2rem;
   }

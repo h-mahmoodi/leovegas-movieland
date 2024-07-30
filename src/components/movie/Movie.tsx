@@ -8,12 +8,14 @@ import {
   removeFromWatchLater,
 } from '../../data/watchLaterSlice';
 
-import { type IMovieSummery } from '../../types/Movie';
-
-import placeholder from '../../assets/not-found-500X750.jpeg';
 import { saveWatchLaterMovies } from '../../data/thunks/watchLaterThunks';
 import { saveStarredMovies } from '../../data/thunks/starredThunks';
 import { fetchTrailer } from '../../data/thunks/appThunks';
+
+import { type IMovieSummery } from '../../types/Movie';
+
+import placeholder from '../../assets/not-found-500X750.jpeg';
+
 interface MovieProps {
   movie: IMovieSummery;
 }
@@ -51,6 +53,14 @@ const Movie = ({ movie }: MovieProps) => {
     dispatch(fetchTrailer(movie.id.toString()));
   };
 
+  const moviePoster = movie.poster_path
+    ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+    : placeholder.toString();
+
+  const isMovieStarred = starredMovies.find((item) => item.id === movie.id);
+  const isMovieInWatchLater = watchLaterMovies.find(
+    (item) => item.id === movie.id
+  );
   return (
     <div className="movie-item">
       <div
@@ -61,14 +71,7 @@ const Movie = ({ movie }: MovieProps) => {
         <div
           className="movie-item__card-body"
           style={{
-            backgroundImage: `url(
-              ${
-                movie.poster_path
-                  ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-                  : placeholder
-              }
-                
-            )`,
+            backgroundImage: `url(${moviePoster})`,
           }}
         >
           <div className="movie-item__card-body__info">
@@ -111,16 +114,7 @@ const Movie = ({ movie }: MovieProps) => {
             </span>
           </div>
           <div className="movie-item__card-footer_buttons">
-            {!watchLaterMovies.find((item) => item.id === movie.id) ? (
-              <button
-                type="button"
-                data-testid="watch-later"
-                className="movie-item__card-footer-later-button"
-                onClick={addToWatchLaterHandler}
-              >
-                <i className="fi fi-rr-video-duration"></i>
-              </button>
-            ) : (
+            {isMovieInWatchLater ? (
               <button
                 type="button"
                 data-testid="remove-watch-later"
@@ -129,24 +123,33 @@ const Movie = ({ movie }: MovieProps) => {
               >
                 <i className="fi fi-rr-video-duration"></i>
               </button>
+            ) : (
+              <button
+                type="button"
+                data-testid="watch-later"
+                className="movie-item__card-footer-later-button"
+                onClick={addToWatchLaterHandler}
+              >
+                <i className="fi fi-rr-video-duration"></i>
+              </button>
             )}
 
-            {!starredMovies.find((item) => item.id === movie.id) ? (
-              <span
-                className="movie-item__card-footer-star-button"
-                data-testid="starred-link"
-                onClick={addToStarMovieHandler}
-              >
-                <i className="fi fi-rr-wishlist-star"></i>
-              </span>
-            ) : (
-              <span
+            {isMovieStarred ? (
+              <button
                 className="movie-item__card-footer-star-button movie-item__card-footer-star-button--active"
                 data-testid="unstar-link"
                 onClick={removeFromStarMovie}
               >
                 <i className="fi fi-rr-wishlist-star" data-testid="star-fill" />
-              </span>
+              </button>
+            ) : (
+              <button
+                className="movie-item__card-footer-star-button"
+                data-testid="starred-link"
+                onClick={addToStarMovieHandler}
+              >
+                <i className="fi fi-rr-wishlist-star"></i>
+              </button>
             )}
           </div>
         </div>

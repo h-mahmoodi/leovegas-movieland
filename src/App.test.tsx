@@ -27,7 +27,7 @@ it('search for movies', async () => {
         screen.getAllByText(/Through the Eyes of Forrest Gump/i)[0]
       ).toBeInTheDocument();
     },
-    { timeout: 5000 }
+    { timeout: 3000 }
   );
   const viewTrailerBtn = screen.getAllByTestId('watch-trailer')[0];
   await user.click(viewTrailerBtn);
