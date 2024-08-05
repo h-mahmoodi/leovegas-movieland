@@ -2,8 +2,8 @@ import watchLaterSliceReducer, {
   addToWatchLater,
   removeFromWatchLater,
   removeAllWatchLater,
-} from '../data/watchLaterSlice';
-import { moviesMock } from './movies.mocks';
+} from '../data/watchLaterSlice/watchLaterSlice';
+import { moviesMock } from '../mocks/movies.mocks';
 import { type IMovieSummery } from '../types/Movie';
 
 describe('watchLaterSlice test', () => {

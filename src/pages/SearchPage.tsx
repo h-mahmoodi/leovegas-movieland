@@ -7,8 +7,8 @@ import useInfiniteScroll from '../hooks/useInfiniteScroll';
 
 import { ENDPOINT_SEARCH } from '../constants';
 
-import { resetMovies } from '../data/moviesSlice';
-import { fetchMovies } from '../data/thunks/moviesThunks';
+import { resetMovies } from '../data/moviesSlice/moviesSlice';
+import { fetchMovies } from '../data/moviesSlice/thunks';
 
 import Loader from '../components/ui/Loader';
 import MoviesList from '../components/movie/MoviesList';

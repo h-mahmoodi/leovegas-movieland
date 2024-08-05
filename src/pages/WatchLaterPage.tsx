@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import useAppDispatch from '../hooks/useAppDispatch';
 import useAppSelector from '../hooks/useAppSelector';
 
-import { saveWatchLaterMovies } from '../data/thunks/watchLaterThunks';
-import { removeAllWatchLater } from '../data/watchLaterSlice';
+import { saveWatchLaterMovies } from '../data/watchLaterSlice/thunks';
+import { removeAllWatchLater } from '../data/watchLaterSlice/watchLaterSlice';
 
 import MoviesList from '../components/movie/MoviesList';
 import Button from '../components/ui/Button';

@@ -2,9 +2,9 @@ import starredSliceReducer, {
   starMovie,
   unstarMovie,
   clearAllStarred,
-} from '../data/starredSlice';
+} from '../data/starredSlice/starredSlice';
 import { IMovieSummery } from '../types/Movie';
-import { moviesMock } from './movies.mocks';
+import { moviesMock } from '../mocks/movies.mocks';
 
 describe('starredSlice test', () => {
   const state: { movies: IMovieSummery[] } = { movies: [] };

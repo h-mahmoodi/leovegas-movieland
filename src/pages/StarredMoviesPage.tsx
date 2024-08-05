@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import useAppSelector from '../hooks/useAppSelector';
 import useAppDispatch from '../hooks/useAppDispatch';
 
-import { saveStarredMovies } from '../data/thunks/starredThunks';
-import { clearAllStarred } from '../data/starredSlice';
+import { saveStarredMovies } from '../data/starredSlice/thunks';
+import { clearAllStarred } from '../data/starredSlice/starredSlice';
 
 import MoviesList from '../components/movie/MoviesList';
 import Button from '../components/ui/Button';
@@ -19,6 +19,10 @@ const StarredMoviesPage = () => {
   };
 
   const hasStarredMovies = starredMovies.length > 0;
+
+  // if (fetchStatus === 'loading') {
+  //   return <Loader />;
+  // }
 
   return (
     <div className="starred-movies__page" data-testid="starred">

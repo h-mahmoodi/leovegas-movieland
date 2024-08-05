@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+
 import '@testing-library/jest-dom';
-
-// import '@testing-library/jest-dom/extend-expect';
-
 import dotenv from 'dotenv';
-
-// Load .env.test file
+import { server } from './mocks/server';
 dotenv.config({ path: '.env' });
+
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
 
 class IntersectionObserverMock {
   constructor(
@@ -29,6 +30,7 @@ Object.defineProperty(window, 'IntersectionObserver', {
   configurable: true,
   value: IntersectionObserverMock,
 });
+
 Object.defineProperty(global, 'IntersectionObserver', {
   writable: true,
   configurable: true,

@@ -1,14 +1,14 @@
 import useAppSelector from '../../hooks/useAppSelector';
 import useAppDispatch from '../../hooks/useAppDispatch';
 
-import { starMovie, unstarMovie } from '../../data/starredSlice';
+import { starMovie, unstarMovie } from '../../data/starredSlice/starredSlice';
 import {
   addToWatchLater,
   removeFromWatchLater,
-} from '../../data/watchLaterSlice';
+} from '../../data/watchLaterSlice/watchLaterSlice';
 
-import { saveWatchLaterMovies } from '../../data/thunks/watchLaterThunks';
-import { saveStarredMovies } from '../../data/thunks/starredThunks';
+import { saveWatchLaterMovies } from '../../data/watchLaterSlice/thunks';
+import { saveStarredMovies } from '../../data/starredSlice/thunks';
 
 import { type IMovieSummery } from '../../types/Movie';
 

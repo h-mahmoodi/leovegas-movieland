@@ -3,8 +3,8 @@ import AppRouter from './router/AppRouter';
 
 import useAppDispatch from './hooks/useAppDispatch';
 
-import { loadStarredMovies } from './data/thunks/starredThunks';
-import { loadWatchLaterMovies } from './data/thunks/watchLaterThunks';
+import { loadStarredMovies } from './data/starredSlice/thunks';
+import { loadWatchLaterMovies } from './data/watchLaterSlice/thunks';
 
 import './styles/main.scss';
 

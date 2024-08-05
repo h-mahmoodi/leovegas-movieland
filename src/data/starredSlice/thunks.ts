@@ -1,8 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
 import { loadFromLocalStorage, saveToLocalStorage } from '../../lib/helpers';
 import { STARRED_STORAGE_KEY } from '../../constants';
-
 import { type IMovieSummery } from '../../types/Movie';
 
 export const loadStarredMovies = createAsyncThunk(

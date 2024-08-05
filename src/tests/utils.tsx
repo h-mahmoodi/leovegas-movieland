@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react/prop-types */
 import { render, RenderOptions } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -7,9 +5,9 @@ import { configureStore, EnhancedStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import { type RootState } from '../data/store';
 
-import moviesSliceReducer from '../data/moviesSlice';
-import starredSliceReducer from '../data/starredSlice';
-import watchLaterSliceReducer from '../data/watchLaterSlice';
+import moviesSliceReducer from '../data/moviesSlice/moviesSlice';
+import starredSliceReducer from '../data/starredSlice/starredSlice';
+import watchLaterSliceReducer from '../data/watchLaterSlice/watchLaterSlice';
 
 interface RenderWithProvidersOptions extends RenderOptions {
   preloadedState?: Partial<RootState>;

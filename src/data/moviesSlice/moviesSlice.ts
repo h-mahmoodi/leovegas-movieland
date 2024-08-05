@@ -1,16 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-import { fetchMovies } from './thunks/moviesThunks';
-
-import { type IMovieSummery } from '../types/Movie';
-
-interface InitialState {
-  movies: IMovieSummery[];
-  fetchStatus: 'success' | 'loading' | 'error';
-  currentPage: number;
-  hasMoreToFetch: boolean;
-  totalResults: number;
-}
+import { fetchMovies } from './thunks';
+import { type InitialState } from './types';
 
 const initialState: InitialState = {
   movies: [],

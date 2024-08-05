@@ -18,4 +18,13 @@ export const moviesMock: IMovieSummery[] = [
     title: 'Interstellar',
     vote_average: 5.6,
   },
+  {
+    id: 237353,
+    overview:
+      "A look behind the scenes of Robert Zemeckis' 1994 Oscar-winning film, 'Forrest Gump'.",
+    release_date: '1994',
+    poster_path: '/dfjLE1HjdR9XhEpN04elCGUOJfA.jpg',
+    title: 'Through the Eyes of Forrest Gump',
+    vote_average: 7.6,
+  },
 ];

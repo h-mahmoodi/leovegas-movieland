@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import moviesSliceReducer from './moviesSlice';
-import starredSliceReducer from './starredSlice';
-import watchLaterSliceReducer from './watchLaterSlice';
+import moviesSliceReducer from './moviesSlice/moviesSlice';
+import starredSliceReducer from './starredSlice/starredSlice';
+import watchLaterSliceReducer from './watchLaterSlice/watchLaterSlice';
 
 const store = configureStore({
   reducer: {

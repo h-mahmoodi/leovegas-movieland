@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import Link from './../components/ui/Link';
+import Link from '../components/ui/Link';
 
 describe('Link component', () => {
   it('renders with default style', () => {

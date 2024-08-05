@@ -1,12 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-import { loadStarredMovies, saveStarredMovies } from './thunks/starredThunks';
-
-import { type IMovieSummery } from '../types/Movie';
-
-interface InitialState {
-  movies: IMovieSummery[];
-}
+import { loadStarredMovies, saveStarredMovies } from './thunks';
+import { type InitialState } from './types';
+import { type IMovieSummery } from '../../types/Movie';
 
 const initialState: InitialState = {
   movies: [],

@@ -235,6 +235,18 @@ npm install
 npm run start
 ```
 
+**Test app:**:
+
+```bash
+npm run test
+```
+
+**Test app with coverage:**:
+
+```bash
+npm run test:coverage
+```
+
 ### Resources
 
 **Live Demo on Netlify**: https://leovegas-movieland.netlify.app/

@@ -40,8 +40,8 @@ describe('Button component', () => {
 
   it('handles click event', async () => {
     const handleClick = jest.fn();
-    render(<Button onClick={handleClick}>Click Me</Button>);
     const user = userEvent.setup();
+    render(<Button onClick={handleClick}>Click Me</Button>);
     const buttonElement = screen.getByRole('button', { name: /click me/i });
     await user.click(buttonElement);
     expect(handleClick).toHaveBeenCalledTimes(1);

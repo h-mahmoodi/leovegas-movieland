@@ -12,7 +12,6 @@ interface ModalProps {
 
 const Modal = ({ onClose, movie }: ModalProps) => {
   const { status, trailerKey } = useLoadTrailer(movie.id);
-
   return createPortal(
     <div className="modal-container" data-testid="modal-video">
       <div className="modal-overlay" onClick={onClose}></div>

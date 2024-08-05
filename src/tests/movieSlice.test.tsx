@@ -1,18 +1,7 @@
-import { fetchMovies } from '../data/thunks/moviesThunks';
-import { moviesMock } from './movies.mocks';
+import { fetchMovies } from '../data/moviesSlice/thunks';
+import { moviesMock } from '../mocks/movies.mocks';
 
 describe('MovieSlice test', () => {
-  // const initialState = moviesSlice.reducer(
-  //   {
-  //     movies: [],
-  //     fetchStatus: 'loading',
-  //     currentPage: 1,
-  //     hasMoreToFetch: true,
-  //     totalResults: 0,
-  //   },
-  //   action
-  // );
-
   it('should set loading true while action is pending', () => {
     const action = { type: fetchMovies.pending };
 

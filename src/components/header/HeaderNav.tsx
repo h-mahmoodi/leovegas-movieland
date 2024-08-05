@@ -15,7 +15,7 @@ const HeaderNav = () => {
   useClickOutSide(ref, () => setSidebar(false));
   return (
     <>
-      <nav className="desktop-nav">
+      <nav className="desktop-nav" data-testid="header-nav">
         <Link to="/starred" data-testid="nav-starred" className="has-badge">
           <i className="fi fi-rr-wishlist-star" />
           <span>Starred</span>
@@ -31,16 +31,20 @@ const HeaderNav = () => {
           )}
         </Link>
       </nav>
-      <nav className="mobile-nav">
-        <Button onClick={() => setSidebar(true)}>
+      <nav className="mobile-nav" data-testid="header-nav">
+        <Button onClick={() => setSidebar(true)} data-testid="open-menu-btn">
           <i className="fi fi-rr-menu-burger"></i>
         </Button>
         <div
           ref={ref}
           className={`mobile-nav_sidebar ${sidebar ? 'sidebar-open' : 'sidebar-close'}`}
+          data-testid="mobile-menu"
         >
           <div className="mobile-nav_sidebar-close-btn">
-            <Button onClick={() => setSidebar(false)}>
+            <Button
+              onClick={() => setSidebar(false)}
+              data-testid="close-menu-btn"
+            >
               <i className="fi fi-rr-cross"></i>
             </Button>
           </div>

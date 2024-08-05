@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
 import { type IMovie, type IMovieSummery } from '../../types/Movie';
 
 export const fetchMovies = createAsyncThunk(
@@ -18,6 +17,7 @@ export const fetchMovies = createAsyncThunk(
         vote_average: movie.vote_average,
       })
     );
+
     return {
       movies: normalizedMovies,
       page: page,
