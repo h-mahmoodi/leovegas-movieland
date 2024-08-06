@@ -1,0 +1,53 @@
+.starred-movies {
+  &__page {
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  &__header {
+    background-color: $color_dark_dark;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+
+    @include screen(mobile) {
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    &-title {
+      font-size: 2rem;
+    }
+  }
+
+  &__movies {
+  }
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 4rem;
+
+    &-icon {
+      font-size: 7rem;
+    }
+
+    &-message {
+      font-size: 2.5rem;
+    }
+
+    &-link {
+      color: $color_secondary_light;
+      font-size: 2rem;
+    }
+  }
+}

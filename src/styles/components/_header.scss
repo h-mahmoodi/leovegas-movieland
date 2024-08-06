@@ -1,0 +1,136 @@
+@import './../variables/index';
+header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: $color_dark_dark;
+  width: 100%;
+  border-bottom: 5px solid $color_secondary_main;
+  // padding: 0.5rem 0rem;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include screen(tablet) {
+      flex-direction: column;
+      align-items: start;
+      gap: 2rem;
+    }
+  }
+
+  .site-logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: $color_light_dark;
+
+    i {
+      font-size: 4rem;
+    }
+    img {
+      width: 25rem;
+    }
+  }
+
+  .navbar {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 2rem;
+
+    @include screen(tablet) {
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+
+  .desktop-nav {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 2rem;
+    @include screen(tablet-landscape) {
+      display: none;
+    }
+  }
+
+  .mobile-nav {
+    display: none;
+
+    &_sidebar {
+      position: fixed;
+      top: 0;
+      width: 25rem;
+      height: 100vh;
+      background-color: $color_dark_dark;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 3rem 2rem;
+      overflow: hidden;
+      transition: all 0.5s ease-out;
+      border-left: 4px solid $color_dark_light;
+
+      &-close-btn {
+        display: flex;
+        justify-content: end;
+        margin-bottom: 2rem;
+      }
+    }
+    .sidebar-open {
+      right: 0;
+    }
+    .sidebar-close {
+      right: -30rem;
+    }
+
+    @include screen(tablet-landscape) {
+      display: block;
+    }
+  }
+
+  .has-badge {
+    position: relative;
+
+    sup {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background-color: $color_secondary_main;
+      border-radius: 50%;
+      width: 2.2rem;
+      height: 2.2rem;
+      font-size: 1.4rem;
+      line-height: 1.5;
+    }
+  }
+
+  .search {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: $color_dark_light;
+    padding: 1rem 1.4rem;
+    border-radius: 5px;
+
+    input {
+      background-color: $color_dark_light;
+      outline: none;
+      border: none;
+      font-size: inherit;
+      width: 15rem;
+      color: $color_light_main;
+      &::placeholder {
+        color: $color_light_dark;
+      }
+    }
+
+    i {
+      font-size: 2rem;
+    }
+  }
+}

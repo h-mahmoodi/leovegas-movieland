@@ -1,0 +1,54 @@
+@import './../variables/index';
+
+*,
+*:before,
+*:after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; //1rem = 10px
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  color: $color_light_main;
+  font-size: 1.6rem;
+  background-color: $color_dark_main;
+}
+
+a,
+a:visited,
+a:active {
+  text-decoration: none;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+
+  @include screen(large-desktop) {
+    max-width: 1500px;
+  }
+  @include screen(tablet-landscape) {
+    max-width: 900px;
+  }
+  @include screen(tablet) {
+    max-width: 640px;
+  }
+  @include screen(mobile) {
+    max-width: 480px;
+  }
+}
+
+i {
+  display: flex;
+}
